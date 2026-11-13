@@ -1,0 +1,81 @@
+{
+  "brand": "AVYN",
+  "tagline": "O vinho certo, pelo preço certo",
+  "brief": "Ecossistema digital do vinho no Brasil: catálogo, comparação de preços, adega e IA sommelier. Premium, contemporâneo e acolhedor; nada de vinícola antiga, brasão ou cara infantil.",
+  "adjectives": [
+    "sofisticado",
+    "esperto",
+    "acolhedor",
+    "contemporâneo"
+  ],
+  "criteria": "Reconhecível a 16 px, funciona em uma cor, diferente de taças e cachos genéricos da categoria, só nas famílias dourado, preto, vinho e branco.",
+  "industry": "consumer-app",
+  "mockups": [
+    "app-icon",
+    "website",
+    "social",
+    "business-card",
+    "favicon-tab",
+    "shopping-bag"
+  ],
+  "nav": [
+    "Catálogo",
+    "Preços",
+    "Adega"
+  ],
+  "brand_color": "#7E2236",
+  "tile_color": "#16110F",
+  "greyscale": false,
+  "designer": "AVYN design",
+  "round": 3,
+  "concepts": [
+    {
+      "name": "Decanter-A",
+      "symbol": "L2-symbol.svg",
+      "lockup": "L2-lockup.svg",
+      "symbol_on_tile": "L2-symbol-on-tile.svg",
+      "symbol_on_dark": "L2-symbol-on-tile.svg",
+      "lockup_on_dark": "L2-lockup-on-dark.svg",
+      "idea": "O A é um decanter: o vazio é o miolo, o vinho é a travessa e o fundo côncavo abre as pernas.",
+      "rationale": [
+        "A inicial do nome e o objeto do vinho na mesma forma",
+        "Lê como A a 16 px; sólido para ícone, gravação e etiqueta",
+        "Dourado sobre quase-preto: premium sem brasão nem serifa clássica"
+      ]
+    },
+    {
+      "name": "a-giro",
+      "symbol": "L5-symbol.svg",
+      "lockup": "L5-lockup.svg",
+      "symbol_on_tile": "L5-symbol-on-tile.svg",
+      "symbol_on_dark": "L5-symbol-on-tile.svg",
+      "lockup_on_dark": "L5-lockup-on-dark.svg",
+      "idea": "O a do nome guarda vinho girando: a marca já vem servida.",
+      "rationale": [
+        "Letra do próprio wordmark: sistema coerente",
+        "Movimento e acolhimento sem ser infantil",
+        "Ícone forte e simples"
+      ]
+    },
+    {
+      "name": "Lupa-taça",
+      "symbol": "L6-symbol.svg",
+      "lockup": "L6-lockup.svg",
+      "symbol_on_tile": "L6-symbol-on-tile.svg",
+      "symbol_on_dark": "L6-symbol-on-tile.svg",
+      "lockup_on_dark": "L6-lockup-on-dark.svg",
+      "idea": "A lupa cheia de vinho: buscar e degustar num só sinal.",
+      "rationale": [
+        "Liga a marca às duas funções de lançamento: catálogo e comparação de preços",
+        "O vinho nivelado dentro da lente é o desvio que tira a lupa do genérico",
+        "Creme e vinho sobre quase-preto: lê bem a 16 px e no ícone de app"
+      ]
+    }
+  ],
+  "recommendation": "Decanter-A: a ideia mais própria e a mais legível em tamanho pequeno. a-giro é a alternativa mais calorosa; Lupa-taça é a mais funcional, ligada à busca de preços.",
+  "next_steps": [
+    "Escolher a direção de logo e de mascote",
+    "Kit: paleta aplicada, lockups, ícones, guia de uso",
+    "Expressões do mascote escolhido"
+  ]
+}
