@@ -19,7 +19,7 @@ Flutter (implementação futura, fora do escopo desta etapa). O Design System é
 
 ## Product Purpose
 
-Ecossistema digital do vinho que reúne, num único app, o que hoje está espalhado por vários (Vivino, Wine-Searcher, CellarTracker, InVintory, Oeni). Funcionalidades iniciais confirmadas: **1. Catálogo de vinhos** e **2. Busca e comparação de preços ("Buscapé" de vinhos) e busca geral**. Visão posterior: adega virtual, análise sensorial guiada (com registro técnico e fotográfico), harmonização, aprendizado, compra/venda de garrafas, comunidade e confrarias, experiências em vinícolas e IA sommelier.
+Ecossistema digital do vinho que reúne, num único app, o que hoje está espalhado por vários (Vivino, Wine-Searcher, CellarTracker, InVintory, Oeni). Funcionalidades iniciais confirmadas: **1. Catálogo de vinhos** e **2. Busca e comparação de preços ("Buscapé" de vinhos) e busca geral** e **3. Canal WhatsApp** (ofertas e promoções enviadas ao usuário, estilo Trivago, e um sommelier virtual que responde dúvidas e busca o melhor preço de um vinho na internet, tudo pela conversa; referência: Magie). Visão posterior: adega virtual, análise sensorial guiada (com registro técnico e fotográfico), harmonização, aprendizado, compra/venda de garrafas, comunidade e confrarias, experiências em vinícolas e IA sommelier.
 
 ## Positioning
 
@@ -28,9 +28,8 @@ Ecossistema digital do vinho que reúne, num único app, o que hoje está espalh
 ## Operating Context
 
 - Mercado de lançamento: **Brasil**, idioma **PT-BR**, moeda **R$ (BRL)**.
-- Uso típico: no supermercado ou na loja (comparar preço, decidir a compra), no restaurante, em casa (adega, registro de degustação) e em eventos/confrarias.
-- Monetização híbrida (valores a definir). Grátis: cadastro, busca de preços limitada, adega virtual, análise sensorial e comunidade. Premium: IA Sommelier, alertas de preço (app e WhatsApp), análise avançada da adega, busca global de preços e classificados entre particulares.
-
+- Uso típico: no supermercado ou na loja (comparar preço, decidir a compra), no restaurante, em casa (adega, registro de degustação), em eventos/confrarias e pelo WhatsApp, sem abrir o app (perguntar ao sommelier, receber ofertas).
+- Monetização híbrida (valores a definir). Grátis: cadastro, busca de preços limitada, adega virtual, análise sensorial, comunidade e sommelier no WhatsApp. Premium: IA Sommelier, alertas de preço (app e WhatsApp), análise avançada da adega, busca global de preços e classificados entre particulares.
 ## Capabilities and Constraints
 
 - Esta etapa: identidade visual + Design System iOS no Figma, documentados no repositório. Sem código Flutter, sem backend, sem telas completas do produto.

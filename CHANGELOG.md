@@ -2,6 +2,16 @@
 
 Formato: data · o que mudou · onde (Figma / repo).
 
+## 2026-11-15 — Produto: canal WhatsApp no MVP
+
+- Pedido do responsável pelo produto (mensagem de 2026-11-14), confirmado como escopo do MVP:
+  - o app envia ofertas e promoções pelo WhatsApp (estilo Trivago);
+  - o usuário conversa com um sommelier virtual que responde dúvidas e busca o melhor preço de um vinho na internet.
+- Referência: Magie (assistente de IA que funciona inteiro pelo WhatsApp).
+- Plano: o sommelier no WhatsApp é grátis; os alertas de preço por WhatsApp seguem no Premium.
+- Atualizados: `docs/product-context.md` (nova seção "Canal WhatsApp (MVP)"), `PRODUCT.md`.
+- Novo: `CLAUDE.md`, guia do repositório para o Claude Code (produto, escopo, regras de trabalho, identidade, Figma).
+
 ## 2026-11-12 — Identidade rodada 3 (nível "showcase")
 
 - Novo pedido: chegar perto dos exemplos da skill, mantendo as famílias de cor e o "nada infantil". O resto foi liberado e o pedido era por várias ideias.
