@@ -1,0 +1,301 @@
+{
+  "color": {
+    "$description": "Primitivas de cor do AVYN. Não use direto na interface: use os papéis semânticos (color.light.json / color.dark.json).",
+    "brand": {
+      "wine": {
+        "$type": "color",
+        "$value": "#7E2236",
+        "$description": "Granada. Cor principal da marca e tint no modo claro."
+      },
+      "wine-night": {
+        "$type": "color",
+        "$value": "#B4475B",
+        "$description": "Vinho do logo escuro. Preenchimento de ações no modo escuro."
+      },
+      "wine-night-ink": {
+        "$type": "color",
+        "$value": "#D38686",
+        "$description": "Vinho claro e pouco rosado para texto, ícones e links no modo escuro."
+      },
+      "gold": {
+        "$type": "color",
+        "$value": "#C29A5B",
+        "$description": "Mel. Acento decorativo; nunca texto no modo claro."
+      },
+      "noir": {
+        "$type": "color",
+        "$value": "#16110F",
+        "$description": "Quase-preto amadeirado."
+      },
+      "ivory": {
+        "$type": "color",
+        "$value": "#F8F3EC",
+        "$description": "Creme. Fundo do modo claro."
+      },
+      "paper": {
+        "$type": "color",
+        "$value": "#FFFDF9",
+        "$description": "Superfície mais clara do modo claro."
+      }
+    },
+    "neutral": {
+      "50": {
+        "$type": "color",
+        "$value": "#FBF5F3"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#F0EAE7"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#DFD5D1"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#C5BBB7"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#A59C98"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#877E7A"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#6C6460"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#564E4A"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#433B38"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#2E2724"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#1B1412"
+      }
+    },
+    "wine": {
+      "50": {
+        "$type": "color",
+        "$value": "#FEF4F5"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#FEE4E6"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#FEC7CC"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#F6A3AD"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#D7828D"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#B9626E"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#9E4553"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#7E2236"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#6E162C"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#520019"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#31000C"
+      }
+    },
+    "gold": {
+      "50": {
+        "$type": "color",
+        "$value": "#FFF5E7"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#FEE8C6"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#F4D29F"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#DEB77B"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#C29A5B"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#9C7A42"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#7F602F"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#654A1E"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#50380F"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#382501"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "#201300"
+      }
+    },
+    "state": {
+      "$description": "Cores de estado calibradas para 4,5:1 sobre todos os fundos do respectivo modo.",
+      "success-light": {
+        "$type": "color",
+        "$value": "#457325",
+        "$description": "Verde de vinhedo, modo claro."
+      },
+      "success-dark": {
+        "$type": "color",
+        "$value": "#6A9B4D",
+        "$description": "Verde de vinhedo, modo escuro."
+      },
+      "warning-light": {
+        "$type": "color",
+        "$value": "#9E5504",
+        "$description": "Âmbar (afastado do dourado da marca), modo claro."
+      },
+      "warning-dark": {
+        "$type": "color",
+        "$value": "#D0792A",
+        "$description": "Âmbar, modo escuro."
+      },
+      "danger-light": {
+        "$type": "color",
+        "$value": "#BB3924",
+        "$description": "Vermelhão (distinto do vinho da marca), modo claro."
+      },
+      "danger-dark": {
+        "$type": "color",
+        "$value": "#E9644C",
+        "$description": "Vermelhão, modo escuro."
+      }
+    },
+    "mix": {
+      "$description": "Misturas sólidas (cor a X% sobre o fundo base do modo), para fundos tingidos.",
+      "wine-on-ivory-10": {
+        "$type": "color",
+        "$value": "#ECDEDA"
+      },
+      "wine-on-ivory-16": {
+        "$type": "color",
+        "$value": "#E4D2CF"
+      },
+      "wine-ink-on-noir-16": {
+        "$type": "color",
+        "$value": "#342422"
+      },
+      "wine-ink-on-noir-24": {
+        "$type": "color",
+        "$value": "#432D2C"
+      },
+      "gold-on-ivory-18": {
+        "$type": "color",
+        "$value": "#EEE3D2"
+      },
+      "gold-on-noir-18": {
+        "$type": "color",
+        "$value": "#3A2F22"
+      },
+      "success-on-ivory-8": {
+        "$type": "color",
+        "$value": "#EAE9DC"
+      },
+      "success-on-noir-14": {
+        "$type": "color",
+        "$value": "#222418"
+      },
+      "warning-on-ivory-8": {
+        "$type": "color",
+        "$value": "#F1E6D9"
+      },
+      "warning-on-noir-14": {
+        "$type": "color",
+        "$value": "#302013"
+      },
+      "danger-on-ivory-8": {
+        "$type": "color",
+        "$value": "#F3E4DC"
+      },
+      "danger-on-noir-14": {
+        "$type": "color",
+        "$value": "#341D18"
+      },
+      "wine-pressed": {
+        "$type": "color",
+        "$value": "#6E162C",
+        "$description": "Ação pressionada, modo claro."
+      },
+      "wine-night-pressed": {
+        "$type": "color",
+        "$value": "#983D4D",
+        "$description": "Ação pressionada, modo escuro."
+      }
+    },
+    "wine-type": {
+      "$description": "Cores de dado para o tipo de vinho. Sempre acompanhadas do nome do tipo.",
+      "tinto": {
+        "$type": "color",
+        "$value": "#7E2236"
+      },
+      "branco": {
+        "$type": "color",
+        "$value": "#F4D29F"
+      },
+      "rose": {
+        "$type": "color",
+        "$value": "#F6A3AD"
+      },
+      "espumante": {
+        "$type": "color",
+        "$value": "#FEE8C6"
+      },
+      "laranja": {
+        "$type": "color",
+        "$value": "#DE9046"
+      },
+      "fortificado": {
+        "$type": "color",
+        "$value": "#7F602F"
+      }
+    }
+  }
+}

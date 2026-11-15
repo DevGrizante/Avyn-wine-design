@@ -1,0 +1,39 @@
+{
+  "shadow": {
+    "$description": "Sombras só no modo claro e só em elementos que flutuam. No escuro, a profundidade vem de surface.elevated (sem sombra).",
+    "card": {
+      "$type": "shadow",
+      "$value": [
+        { "color": "#16110F0F", "offsetX": "0pt", "offsetY": "1pt", "blur": "2pt", "spread": "0pt" },
+        { "color": "#16110F14", "offsetX": "0pt", "offsetY": "8pt", "blur": "24pt", "spread": "-6pt" }
+      ],
+      "$description": "Card de vinho e card de resumo da adega sobre o fundo."
+    },
+    "floating": {
+      "$type": "shadow",
+      "$value": [
+        { "color": "#16110F14", "offsetX": "0pt", "offsetY": "2pt", "blur": "6pt", "spread": "0pt" },
+        { "color": "#16110F24", "offsetX": "0pt", "offsetY": "16pt", "blur": "40pt", "spread": "-8pt" }
+      ],
+      "$description": "Botão flutuante e toast."
+    }
+  },
+  "motion": {
+    "$description": "Movimento. No iOS, use springs do sistema (SwiftUI .spring(duration:bounce:); no Flutter, SpringDescription equivalente). Com Reduzir Movimento ativo, toda transição vira fade de motion.duration.fade.",
+    "duration": {
+      "fast": { "$type": "duration", "$value": "150ms", "$description": "Feedback de toque, troca de ícone." },
+      "base": { "$type": "duration", "$value": "250ms", "$description": "Aparecer e sumir de elementos." },
+      "slow": { "$type": "duration", "$value": "400ms", "$description": "Mudanças de layout maiores." },
+      "fade": { "$type": "duration", "$value": "200ms", "$description": "Substituto de qualquer movimento com Reduzir Movimento." }
+    },
+    "easing": {
+      "out": { "$type": "cubicBezier", "$value": [0.16, 1, 0.3, 1], "$description": "Saída exponencial, para entradas na web/protótipos." },
+      "in-out": { "$type": "cubicBezier", "$value": [0.65, 0, 0.35, 1] }
+    },
+    "spring": {
+      "snappy": { "$type": "transition", "$value": { "duration": "300ms", "bounce": 0.0 }, "$description": "Padrão para estados de controles e filtros." },
+      "smooth": { "$type": "transition", "$value": { "duration": "450ms", "bounce": 0.0 }, "$description": "Expandir células, mudar ordenação." },
+      "cellar": { "$type": "transition", "$value": { "duration": "500ms", "bounce": 0.2 }, "$description": "Momento-assinatura: garrafa entrando na adega e contador subindo. Usar só aqui." }
+    }
+  }
+}

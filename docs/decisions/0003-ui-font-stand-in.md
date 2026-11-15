@@ -1,6 +1,7 @@
 # ADR 0003 — Inter como fonte substituta do SF Pro no Figma
 
-- **Status:** Aceito (aprovado pelo usuário em 2026-11-12)
+- **Status:** Substituído por [ADR 0004](0004-typography.md) (2026-11-15). A UI do app passou a usar DM Sans, que renderiza no Figma; o SF Pro fica só nos elementos desenhados pelo sistema, e o Inter deixa de ser necessário.
+- **Status anterior:** Aceito (aprovado pelo usuário em 2026-11-12)
 
 ## Contexto
 O iOS usa a fonte do sistema (SF Pro / SF Compact), e a HIG pede que ela carregue a UI. O SF Pro aparece em `listAvailableFontsAsync()` porque está instalado localmente na máquina do usuário.

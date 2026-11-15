@@ -1,0 +1,170 @@
+{
+  "color": {
+    "$description": "Papéis semânticos de cor, modo escuro. Mesmas chaves nos dois modos.",
+    "background": {
+      "base": {
+        "$type": "color",
+        "$value": "{color.brand.noir}",
+        "$description": "Fundo das telas."
+      },
+      "grouped": {
+        "$type": "color",
+        "$value": "{color.brand.noir}",
+        "$description": "Fundo de listas agrupadas (inset grouped)."
+      }
+    },
+    "surface": {
+      "default": {
+        "$type": "color",
+        "$value": "#221A18",
+        "$description": "Células, cards e campos sobre o fundo."
+      },
+      "elevated": {
+        "$type": "color",
+        "$value": "#2E2421",
+        "$description": "Sheets, popovers e menus."
+      },
+      "tinted": {
+        "$type": "color",
+        "$value": "{color.mix.wine-ink-on-noir-16}",
+        "$description": "Destaque discreto da marca (ex.: card de oferta)."
+      }
+    },
+    "fill": {
+      "primary": {
+        "$type": "color",
+        "$value": "#F8F3EC2E",
+        "$description": "Trilho de controles (switch, slider)."
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "#F8F3EC21",
+        "$description": "Chips e controles segmentados."
+      },
+      "tertiary": {
+        "$type": "color",
+        "$value": "#F8F3EC17",
+        "$description": "Campo de busca e campos de texto."
+      }
+    },
+    "label": {
+      "primary": {
+        "$type": "color",
+        "$value": "#F5EDE3",
+        "$description": "Texto principal."
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{color.neutral.400}",
+        "$description": "Texto de apoio e placeholder (passa 4,5:1)."
+      },
+      "tertiary": {
+        "$type": "color",
+        "$value": "{color.neutral.500}",
+        "$description": "Só texto desabilitado ou decorativo. Não passa 4,5:1."
+      },
+      "on-action": {
+        "$type": "color",
+        "$value": "{color.brand.ivory}",
+        "$description": "Texto e ícone sobre action.primary."
+      }
+    },
+    "separator": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.neutral.800}",
+        "$description": "Linhas entre células."
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{color.neutral.700}",
+        "$description": "Bordas de controles e cards de adega (3:1 contra o fundo não é exigido)."
+      }
+    },
+    "tint": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.brand.wine-night-ink}",
+        "$description": "Cor interativa do app: links, ícones de ação, seleção. Equivale ao tint do iOS."
+      }
+    },
+    "action": {
+      "primary": {
+        "$type": "color",
+        "$value": "{color.brand.wine-night}",
+        "$description": "Preenchimento do botão principal."
+      },
+      "primary-pressed": {
+        "$type": "color",
+        "$value": "{color.mix.wine-night-pressed}",
+        "$description": "Botão principal pressionado."
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{color.mix.wine-ink-on-noir-16}",
+        "$description": "Preenchimento do botão secundário (texto em tint)."
+      },
+      "secondary-pressed": {
+        "$type": "color",
+        "$value": "{color.mix.wine-ink-on-noir-24}",
+        "$description": "Botão secundário pressionado."
+      }
+    },
+    "accent": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.gold.300}",
+        "$description": "Dourado decorativo: estrelas, filetes, ícones de destaque. Nunca texto no claro."
+      },
+      "ink": {
+        "$type": "color",
+        "$value": "{color.gold.300}",
+        "$description": "Dourado quando precisa ser texto."
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.mix.gold-on-noir-18}",
+        "$description": "Fundo de selo dourado (ex.: melhor preço)."
+      }
+    },
+    "status": {
+      "success": {
+        "$type": "color",
+        "$value": "{color.state.success-dark}",
+        "$description": "No ponto para beber, preço caiu, sucesso."
+      },
+      "success-subtle": {
+        "$type": "color",
+        "$value": "{color.mix.success-on-noir-14}",
+        "$description": "Fundo do selo de sucesso."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{color.state.warning-dark}",
+        "$description": "Beber logo, atenção."
+      },
+      "warning-subtle": {
+        "$type": "color",
+        "$value": "{color.mix.warning-on-noir-14}",
+        "$description": "Fundo do selo de atenção."
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "{color.state.danger-dark}",
+        "$description": "Erro, ação destrutiva, passou do ponto."
+      },
+      "danger-subtle": {
+        "$type": "color",
+        "$value": "{color.mix.danger-on-noir-14}",
+        "$description": "Fundo do selo de erro."
+      }
+    },
+    "scrim": {
+      "default": {
+        "$type": "color",
+        "$value": "#0000008C",
+        "$description": "Véu atrás de sheets e diálogos."
+      }
+    }
+  }
+}

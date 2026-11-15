@@ -1,0 +1,889 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AVYN Design System</title>
+<meta name="description" content="Fundamentos, componentes e telas de referência do Design System iOS do AVYN.">
+<link rel="icon" href="../../assets/brand/logo/taca-lupa/icone-claro-32.png">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="components.css">
+<style>
+  * { box-sizing: border-box; }
+  html { background: var(--color-background-base); scroll-behavior: smooth; scroll-padding-top: 24px; }
+  body { margin: 0; background: var(--color-background-base); color: var(--color-label-primary); font: 400 16px/1.55 var(--font-family-text); font-optical-sizing: auto; -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--color-action-secondary-pressed); color: var(--color-label-primary); }
+  a { color: var(--color-tint-default); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  :focus-visible { outline: 2px solid var(--color-tint-default); outline-offset: 2px; border-radius: 6px; }
+  code { font: 500 0.86em/1.4 ui-monospace, "SF Mono", Menlo, monospace; color: var(--color-label-primary); background: var(--color-fill-tertiary); padding: 1px 5px; border-radius: 5px; white-space: nowrap; }
+  html { scrollbar-color: var(--color-separator-strong) transparent; }
+
+  .shell { display: grid; grid-template-columns: 232px minmax(0, 1fr); max-width: 1440px; margin: 0 auto; }
+  .side { position: sticky; top: 0; height: 100vh; overflow: auto; padding: 28px 20px 28px 28px; display: flex; flex-direction: column; gap: 28px; border-right: var(--border-hairline) solid var(--color-separator-default); scrollbar-width: thin; scrollbar-color: var(--color-separator-strong) transparent; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+  .brand img { width: 40px; height: 40px; border-radius: 10px; }
+  .brand b { font: 600 20px/1.1 var(--font-family-display); display: block; }
+  .brand span { font-size: 13px; color: var(--color-label-secondary); }
+  .toc { display: grid; gap: 2px; }
+  .toc a { display: block; padding: 6px 10px; border-radius: 8px; color: var(--color-label-secondary); text-decoration: none; font-size: 15px; }
+  .toc a:hover { background: var(--color-fill-tertiary); color: var(--color-label-primary); }
+  .toc a.is-current { background: var(--color-action-secondary); color: var(--color-tint-default); font-weight: 600; }
+  .toc .grp { margin-top: 14px; padding: 0 10px 4px; font-size: 13px; font-weight: 600; color: var(--color-label-primary); }
+  .theme { display: grid; gap: 8px; font-size: 13px; color: var(--color-label-secondary); }
+  .seg { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--color-fill-secondary); border-radius: 9px; padding: 2px; }
+  .seg button { border: 0; background: transparent; font: 500 13px/1 var(--font-family-text); color: var(--color-label-primary); padding: 8px 10px; border-radius: 7px; cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--color-surface-elevated); box-shadow: 0 1px 3px rgba(0,0,0,.12); font-weight: 600; }
+
+  main { padding: 56px 56px 120px; min-width: 0; }
+  .intro { max-width: 760px; margin-bottom: 72px; }
+  .intro h1 { font: 600 56px/1.04 var(--font-family-display); letter-spacing: -0.02em; margin: 0 0 20px; text-wrap: balance; }
+  .intro p { font-size: 19px; line-height: 1.55; color: var(--color-label-secondary); margin: 0 0 12px; max-width: 64ch; }
+  .facts { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 24px; font-size: 14px; color: var(--color-label-secondary); }
+  .facts b { color: var(--color-label-primary); font-weight: 600; }
+
+  section.block { margin-top: 96px; }
+  section.block > h2 { font: 600 40px/1.1 var(--font-family-display); letter-spacing: -0.015em; margin: 0 0 12px; }
+  section.block > .lede { font-size: 17px; color: var(--color-label-secondary); max-width: 68ch; margin: 0 0 36px; }
+  h3.sub { font: 600 24px/1.2 var(--font-family-display); margin: 56px 0 8px; }
+  p.note { font-size: 15px; color: var(--color-label-secondary); max-width: 70ch; margin: 0 0 20px; }
+  ul.rules { margin: 0 0 24px; padding-left: 20px; max-width: 72ch; color: var(--color-label-secondary); font-size: 15px; }
+  ul.rules li { margin-bottom: 6px; }
+  ul.rules b { color: var(--color-label-primary); font-weight: 600; }
+
+  .pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .panel { background: var(--color-background-grouped); color: var(--color-label-primary); border-radius: var(--radius-lg); padding: 20px; display: grid; gap: 16px; align-content: start; position: relative; }
+  .panel[data-theme="dark"] { background: var(--color-background-base); box-shadow: inset 0 0 0 1px var(--color-separator-default); }
+  .panel .mode { font-size: 12px; font-weight: 600; letter-spacing: 0.02em; color: var(--color-label-secondary); }
+  .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .stack { display: grid; gap: 12px; }
+  .spec { font-size: 13px; color: var(--color-label-secondary); margin: 10px 0 0; }
+  .spec code { font-size: 12px; }
+
+  /* Marca */
+  .brand-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+  .brand-tile { border-radius: var(--radius-lg); padding: 20px; display: grid; justify-items: center; gap: 10px; text-align: center; font-size: 13px; color: var(--color-label-secondary); background: var(--color-background-grouped); }
+  .brand-tile[data-theme="dark"] { background: var(--color-background-base); box-shadow: inset 0 0 0 1px var(--color-separator-default); }
+  .brand-tile img { width: 120px; height: 120px; }
+  .brand-tile b { color: var(--color-label-primary); font-weight: 600; font-size: 14px; }
+  .symbol-spec { width: 88px; height: 88px; justify-self: center; margin: 16px 0 4px; }
+  .sizes { display: flex; align-items: flex-end; gap: 20px; }
+  .brand-tile .sizes img { width: auto; height: auto; }
+  .sizes figure { margin: 0; display: grid; justify-items: center; gap: 6px; font-size: 12px; color: var(--color-label-secondary); }
+
+  /* Cor */
+  .roles { display: grid; gap: 0; background: var(--color-surface-default); border-radius: var(--radius-lg); overflow: hidden; }
+  .role { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 10px 14px; }
+  .role + .role { border-top: var(--border-hairline) solid var(--color-separator-default); }
+  .role .sw { width: 44px; height: 32px; border-radius: 8px; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-label-primary) 14%, transparent); }
+  .role .nm { font: 500 13px/1.3 ui-monospace, "SF Mono", Menlo, monospace; overflow-wrap: anywhere; }
+  .role .ds { font-size: 12px; color: var(--color-label-secondary); line-height: 1.35; }
+  .role .hx { font: 500 12px/1 ui-monospace, "SF Mono", Menlo, monospace; color: var(--color-label-secondary); }
+  .role-group { font: 600 13px/1 var(--font-family-text); color: var(--color-label-secondary); padding: 16px 14px 8px; background: var(--color-background-grouped); }
+  .scales { display: grid; gap: 14px; }
+  .scale { display: grid; grid-template-columns: 90px repeat(11, minmax(0, 1fr)); gap: 4px; align-items: stretch; }
+  .scale > span:first-child { font-size: 14px; font-weight: 600; align-self: center; }
+  .scale .st { height: 56px; border-radius: 8px; display: flex; flex-direction: column; justify-content: flex-end; padding: 5px 6px; font: 500 10px/1.2 ui-monospace, Menlo, monospace; }
+  .types { display: flex; flex-wrap: wrap; gap: 10px 24px; }
+
+  /* Tipografia */
+  .type-list { background: var(--color-surface-default); border-radius: var(--radius-lg); overflow: hidden; }
+  .type-row { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 24px; padding: 18px 22px; align-items: baseline; }
+  .type-row + .type-row { border-top: var(--border-hairline) solid var(--color-separator-default); }
+  .type-row .meta { font-size: 13px; color: var(--color-label-secondary); line-height: 1.5; }
+  .type-row .meta b { color: var(--color-label-primary); font-weight: 600; display: block; }
+  .pairing { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  .pairing > div { background: var(--color-surface-default); border-radius: var(--radius-lg); padding: 24px; }
+  .glyphs-display { font: 500 44px/1.1 var(--font-family-display); letter-spacing: -0.01em; overflow-wrap: anywhere; }
+  .glyphs-text { font: 400 30px/1.25 var(--font-family-text); overflow-wrap: anywhere; }
+
+  /* Forma e espaço */
+  .tokens-table { width: 100%; border-collapse: collapse; background: var(--color-surface-default); border-radius: var(--radius-lg); overflow: hidden; font-size: 14px; }
+  .tokens-table th, .tokens-table td { text-align: left; padding: 10px 14px; border-top: var(--border-hairline) solid var(--color-separator-default); vertical-align: middle; }
+  .tokens-table thead th { border-top: 0; font-size: 12px; font-weight: 600; color: var(--color-label-secondary); background: var(--color-background-grouped); }
+  .tokens-table td.vis { width: 45%; }
+  .bar { height: 12px; background: var(--color-tint-default); border-radius: 3px; }
+  .rad { width: 64px; height: 44px; background: var(--color-action-secondary); box-shadow: inset 0 0 0 1px var(--color-tint-default); }
+  .shadow-demo { display: flex; gap: 24px; flex-wrap: wrap; }
+  .shadow-demo > div { width: 200px; height: 120px; border-radius: var(--radius-lg); background: var(--color-surface-default); display: grid; place-items: center; font-size: 13px; color: var(--color-label-secondary); }
+
+  /* Movimento */
+  .motion-demo { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .counter { display: inline-flex; align-items: baseline; gap: 6px; font-size: 15px; color: var(--color-label-secondary); }
+  .counter b { font: 600 34px/1 var(--font-family-display); color: var(--color-label-primary); display: inline-block; }
+  .counter b.bump { animation: bump 500ms linear(0, 0.38 9%, 1.04 22%, 1.17 30%, 1.12 38%, 1 52%, 0.97 66%, 1); }
+  @keyframes bump { from { transform: translateY(8px) scale(0.9); opacity: .4; } to { transform: none; opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .counter b.bump { animation: fade 200ms ease-out; } @keyframes fade { from { opacity: 0; } } html { scroll-behavior: auto; } }
+
+  /* Janela: anatomia */
+  .window-anatomy { margin: 0 0 8px; background: var(--color-surface-default); border-radius: var(--radius-lg); padding: 28px 28px 24px; display: grid; gap: 28px; }
+  .av-window--anatomy .track { height: 18px; margin-top: 26px; }
+  .av-window--anatomy .now { top: -8px; bottom: -8px; width: 4px; margin-left: -2px; }
+  .av-window--anatomy .now::after { top: -26px; font-size: 13px; line-height: 16px; }
+  .av-window--anatomy .years { font-size: 13px; }
+  .anatomy-keys { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px 24px; font-size: 14px; color: var(--color-label-secondary); }
+  .anatomy-keys li { display: grid; grid-template-columns: 28px 1fr; column-gap: 10px; align-items: start; }
+  .anatomy-keys b { display: block; color: var(--color-label-primary); font-weight: 600; }
+  .anatomy-keys .k { grid-row: span 2; margin-top: 4px; height: 12px; border-radius: 6px; }
+  .anatomy-keys .k-track { background: var(--color-fill-secondary); }
+  .anatomy-keys .k-range { background: var(--color-accent-subtle); box-shadow: inset 0 0 0 1px var(--color-accent-default); }
+  .anatomy-keys .k-peak { background: var(--color-accent-default); }
+  .anatomy-keys .k-now { width: 4px; height: 20px; margin-top: 0; justify-self: center; border-radius: 2px; background: var(--color-tint-default); }
+
+  /* Telas */
+  .phones { display: flex; gap: 28px; overflow-x: auto; padding: 8px 4px 24px; scroll-snap-type: x proximity; }
+  @media (min-width: 1101px) { .phones { display: grid; grid-template-columns: repeat(auto-fill, 397px); gap: 48px 28px; overflow: visible; } }
+  .phone-wrap { flex: none; display: grid; gap: 12px; scroll-snap-align: start; }
+  .phone-wrap > p { margin: 0; font-size: 14px; color: var(--color-label-secondary); max-width: 360px; }
+  .phone-wrap > p b { color: var(--color-label-primary); }
+  .phone { width: 375px; height: 812px; border-radius: 48px; overflow: hidden; position: relative; background: var(--color-background-base); color: var(--color-label-primary); box-shadow: 0 0 0 10px #1d1917, 0 0 0 11px #3a3330, 0 30px 60px -20px rgba(22,17,15,.45); margin: 11px; display: flex; flex-direction: column; }
+  .phone .status { height: 50px; flex: none; display: flex; align-items: center; justify-content: space-between; padding: 6px 30px 0 34px; font: 600 16px/1 var(--font-family-system); }
+  .phone .status .island { position: absolute; top: 11px; left: 50%; transform: translateX(-50%); width: 122px; height: 35px; border-radius: 20px; background: #000; }
+  .phone .status svg { width: 68px; height: 13px; fill: currentColor; }
+  .phone .content { flex: 1; overflow: hidden; padding: 0 16px 100px; display: grid; align-content: start; gap: 16px; }
+  .phone .navbar { display: flex; align-items: center; justify-content: space-between; height: 44px; margin: 0 -8px; }
+  .phone .navbar .back { display: inline-flex; align-items: center; gap: 2px; color: var(--color-tint-default); font: 400 17px/22px var(--font-family-text); }
+  .phone .navbar .back svg.icon { width: 22px; height: 22px; stroke-width: 2.2; }
+  .phone .navbar .acts { display: flex; gap: 8px; }
+  .phone .large-title { margin: 4px 0 0; }
+  .phone .tabbar { position: absolute; left: 16px; right: 16px; bottom: 22px; height: 62px; border-radius: 31px; display: grid; grid-template-columns: repeat(3, 1fr); align-items: center; background: color-mix(in srgb, var(--color-surface-elevated) 78%, transparent); backdrop-filter: blur(20px) saturate(1.4); -webkit-backdrop-filter: blur(20px) saturate(1.4); box-shadow: 0 8px 30px -10px rgba(22,17,15,.35), inset 0 0 0 0.5px var(--color-separator-strong); }
+  .phone .tabbar span { display: grid; justify-items: center; gap: 2px; font: 500 11px/13px var(--font-family-text); color: var(--color-label-secondary); }
+  .phone .tabbar span.on { color: var(--color-tint-default); }
+  .phone .tabbar svg.icon { width: 24px; height: 24px; }
+  .phone .home { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); width: 134px; height: 5px; border-radius: 3px; background: var(--color-label-primary); }
+  .phone .hero-bottle { height: 220px; border-radius: var(--radius-lg); background: var(--color-surface-tinted); display: grid; place-items: center; position: relative; }
+  .phone .hero-bottle svg { width: 44px; height: 168px; }
+  .phone .hero-bottle .synthetic { position: absolute; bottom: 10px; right: 12px; font-size: 11px; color: var(--color-label-secondary); }
+  .phone .detail-head { display: grid; gap: 6px; }
+  .phone .detail-head .row { gap: 10px 16px; }
+  .phone .best { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+  .phone .best small { display: block; font-size: 13px; color: var(--color-label-secondary); margin-top: 2px; }
+  .phone .card { background: var(--color-surface-default); border-radius: var(--radius-lg); padding: 16px; box-shadow: var(--shadow-card); }
+
+  .demo-label { position: absolute; top: 10px; right: 14px; font-size: 11px; color: var(--color-label-secondary); }
+  footer { margin-top: 120px; padding-top: 24px; border-top: var(--border-hairline) solid var(--color-separator-default); font-size: 14px; color: var(--color-label-secondary); display: flex; flex-wrap: wrap; gap: 8px 24px; }
+
+  @media (max-width: 1100px) {
+    .shell { grid-template-columns: 1fr; }
+    .side { position: static; height: auto; border-right: 0; border-bottom: var(--border-hairline) solid var(--color-separator-default); padding: 16px; gap: 12px; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+    .toc { display: flex; gap: 4px; overflow-x: auto; width: 100%; order: 3; scrollbar-width: none; }
+    .toc .grp { display: none; }
+    .toc a { white-space: nowrap; }
+    .theme { margin: 0; width: 220px; }
+    .theme > span { display: none; }
+    main { padding: 40px 16px 80px; }
+    .intro h1 { font-size: 40px; }
+    section.block > h2 { font-size: 32px; }
+  }
+  @media (max-width: 760px) {
+    .pair, .pairing { grid-template-columns: 1fr; }
+    .type-row { grid-template-columns: 1fr; gap: 6px; }
+    .scale { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+    .scale > span:first-child { grid-column: 1 / -1; }
+    .tokens-table td.vis { width: 30%; }
+    .theme { width: 100%; }
+  }
+</style>
+</head>
+<body class="av">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 20 20"/></symbol>
+  <symbol id="i-bottle" viewBox="0 0 24 24"><path d="M10 2.5h4M10.6 2.5v4c0 .9-.4 1.6-1.1 2.2-1 .8-1.5 2-1.5 3.3V19.5a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V12c0-1.3-.5-2.5-1.5-3.3-.7-.6-1.1-1.3-1.1-2.2v-4M8 14h8"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-3.6 4-5.5 7.5-5.5s6.3 1.9 7.5 5.5"/></symbol>
+  <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+  <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></symbol>
+  <symbol id="i-sort" viewBox="0 0 24 24"><path d="M7 4v16M3 16l4 4 4-4M17 20V4M13 8l4-4 4 4"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3.5 12.5V4.5a1 1 0 0 1 1-1h8l8.5 8.5-9 9z"/><circle cx="8" cy="8" r="1.4"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15zM10 21h4"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 15V3.5M8 7.5l4-4 4 4M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3.2 2.6 5.5 6 .7-4.5 4.1 1.2 5.9L12 16.4l-5.3 3 1.2-5.9L3.4 9.4l6-.7z"/></symbol>
+  <symbol id="bottle" viewBox="0 0 18 44"><path style="fill:var(--dot,#7E2236)" d="M7 0h4v9c0 1.3.6 2.3 1.6 3.2 2.2 1.9 3.4 4 3.4 7V41a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V19.2c0-3 1.2-5.1 3.4-7C6.4 11.3 7 10.3 7 9z"/><rect style="fill:var(--color-surface-default)" x="4" y="24" width="10" height="9" rx="1.5"/></symbol>
+</svg>
+
+<div class="shell">
+  <aside class="side">
+    <a class="brand" href="#topo">
+      <img src="../../assets/brand/logo/taca-lupa/icone-claro.svg" alt="">
+      <div><b>AVYN</b><span>Design System iOS</span></div>
+    </a>
+    <div class="theme">
+      <span>Aparência da página</span>
+      <div class="seg" role="group" aria-label="Aparência">
+        <button type="button" data-set-theme="system" aria-pressed="true">Sistema</button>
+        <button type="button" data-set-theme="light" aria-pressed="false">Claro</button>
+        <button type="button" data-set-theme="dark" aria-pressed="false">Escuro</button>
+      </div>
+    </div>
+    <nav class="toc" aria-label="Seções">
+      <span class="grp">Fundamentos</span>
+      <a href="#marca">Marca</a>
+      <a href="#cor">Cor</a>
+      <a href="#tipografia">Tipografia</a>
+      <a href="#forma">Espaço e forma</a>
+      <a href="#movimento">Movimento</a>
+      <span class="grp">Componentes</span>
+      <a href="#botoes">Botões</a>
+      <a href="#busca">Busca e filtros</a>
+      <a href="#dados">Preço, selos e avaliação</a>
+      <a href="#vinho">Vinho na lista</a>
+      <a href="#ofertas">Comparação de preços</a>
+      <a href="#janela">Janela de consumo</a>
+      <a href="#adega">Adega</a>
+      <a href="#vazio">Estados vazios e toast</a>
+      <a href="#whatsapp">Aviso no WhatsApp</a>
+      <span class="grp">Telas</span>
+      <a href="#telas">Telas de referência</a>
+    </nav>
+  </aside>
+
+  <main id="topo">
+    <header class="intro">
+      <h1>Uma taça para olhar o vinho de perto.</h1>
+      <p>Este é o Design System do AVYN para iOS: as cores, a tipografia, as medidas e os componentes que o MVP usa na busca de vinhos, na adega e nos avisos por WhatsApp. Tudo aqui sai dos tokens em <code>tokens/</code>; nenhum valor desta página foi digitado à mão.</p>
+      <p>Os controles seguem o iOS. A marca aparece na cor, na tipografia, no símbolo da taça-lupa e na janela de consumo, o único componente que só o AVYN tem.</p>
+      <div class="facts">
+        <span><b>Versão</b> 0.1 · 15/11/2026</span>
+        <span><b>Paleta</b> Warm &amp; Friendly Premium</span>
+        <span><b>Fontes</b> Playfair Display + DM Sans</span>
+        <span><b>Conteúdo</b> vinhos, lojas e preços fictícios</span>
+      </div>
+    </header>
+
+    <!-- ================= MARCA ================= -->
+    <section class="block" id="marca">
+      <h2>Marca</h2>
+      <p class="lede">O símbolo é a taça-lupa: o bojo da taça é a lente, a haste é o cabo. Ele diz o que o app faz, olhar o vinho de perto, sem precisar de texto.</p>
+      <div class="brand-grid">
+        <div class="brand-tile" data-theme="light"><img src="../../assets/brand/logo/taca-lupa/icone-claro.svg" alt="Ícone do app AVYN, versão clara"><b>Ícone claro</b>Fundo creme, vinho granada</div>
+        <div class="brand-tile" data-theme="dark"><img src="../../assets/brand/logo/taca-lupa/icone-escuro.svg" alt="Ícone do app AVYN, versão escura"><b>Ícone escuro</b>Fundo quase-preto, vinho noturno</div>
+        <div class="brand-tile">
+          <div class="sizes">
+            <figure><img src="../../assets/brand/logo/taca-lupa/icone-claro-64.png" width="64" height="64" alt=""><figcaption>64</figcaption></figure>
+            <figure><img src="../../assets/brand/logo/taca-lupa/icone-claro-32.png" width="32" height="32" alt=""><figcaption>32</figcaption></figure>
+            <figure><img src="../../assets/brand/logo/taca-lupa/icone-claro-16.png" width="16" height="16" alt=""><figcaption>16</figcaption></figure>
+          </div>
+          <b>Teste de tamanho</b>Lê como lupa até 16 px
+        </div>
+      </div>
+
+      <h3 class="sub">Símbolo dentro do app</h3>
+      <p class="note">Sem o fundo do ícone, o símbolo ocupa o lugar da ilustração nos estados vazios. Esta versão do app não tem mascote.</p>
+      <div class="pair">
+        <div class="panel" data-theme="light"><span class="mode">Claro</span><img class="symbol-spec" src="../../assets/brand/logo/taca-lupa/simbolo-claro.svg" alt="Símbolo AVYN para fundo claro"><p class="spec"><code>simbolo-claro.svg</code> · traço quase-preto, vinho granada</p></div>
+        <div class="panel" data-theme="dark"><span class="mode">Escuro</span><img class="symbol-spec" src="../../assets/brand/logo/taca-lupa/simbolo-escuro.svg" alt="Símbolo AVYN para fundo escuro"><p class="spec"><code>simbolo-escuro.svg</code> · traço creme, vinho noturno</p></div>
+      </div>
+      <ul class="rules" style="margin-top:20px">
+        <li><b>Estados vazios:</b> 88 pt (<code>size.empty-symbol</code>), uma vez por tela.</li>
+        <li><b>Não é ícone de ação nem de aba</b> e não entra em toasts; ali ficam os SF Symbols.</li>
+        <li><b>Não girar nem recolorir</b> fora dos pares claro e escuro; sem sombra, contorno ou animação.</li>
+      </ul>
+    </section>
+
+    <!-- ================= COR ================= -->
+    <section class="block" id="cor">
+      <h2>Cor</h2>
+      <p class="lede">Quatro famílias: vinho, mel, quase-preto e creme. Os neutros têm a mesma temperatura quente nos dois modos, por isso o app continua reconhecível no escuro. Na interface só se usam os papéis semânticos abaixo; as escalas são matéria-prima.</p>
+      <div class="pair">
+        <div class="panel" data-theme="light"><span class="mode">Claro</span><div class="roles" data-roles></div></div>
+        <div class="panel" data-theme="dark"><span class="mode">Escuro</span><div class="roles" data-roles></div></div>
+      </div>
+      <ul class="rules" style="margin-top:20px">
+        <li><b>Um tint só.</b> <code>tint.default</code> marca tudo que é tocável: links, ícones de ação, seleção. Nada de vinho como decoração.</li>
+        <li><b>Dourado não é texto no claro.</b> Para texto dourado use <code>accent.ink</code>; <code>accent.default</code> é para estrelas, filetes e a janela de consumo.</li>
+        <li><b>No escuro, o botão usa o vinho do logo escuro</b> (<code>#B4475B</code>) e o texto interativo usa um vinho claro e pouco rosado (<code>#D38686</code>).</li>
+        <li><b>Erro não é vinho.</b> O vermelhão de <code>status.danger</code> foi afastado do granada para que um erro nunca pareça marca, e o âmbar de atenção foi afastado do dourado.</li>
+        <li>Todos os pares de texto passam 4,5:1 nos dois modos. O relatório completo está em <a href="../foundations/contrast.md">docs/foundations/contrast.md</a>.</li>
+      </ul>
+
+      <h3 class="sub">Escalas</h3>
+      <div class="scales" data-scales></div>
+
+      <h3 class="sub">Tipos de vinho</h3>
+      <p class="note">Cor de dado, sempre acompanhada do nome. Nunca é o único jeito de saber o tipo.</p>
+      <div class="pair">
+        <div class="panel" data-theme="light"><div class="types" data-types></div></div>
+        <div class="panel" data-theme="dark"><div class="types" data-types></div></div>
+      </div>
+    </section>
+
+    <!-- ================= TIPOGRAFIA ================= -->
+    <section class="block" id="tipografia">
+      <h2>Tipografia</h2>
+      <p class="lede">Playfair Display dá voz aos títulos, aos nomes dos vinhos e aos destaques. DM Sans cuida de textos, menus, botões e informações. Preço é dado de confiança: sempre DM Sans. Todos os estilos escalam com o Dynamic Type do iOS.</p>
+      <div class="type-list" data-typelist></div>
+      <div class="pairing">
+        <div><div class="glyphs-display">Brunello di Montalcino 2018</div><p class="spec">Playfair Display 400–900 · títulos a partir de 18 pt</p></div>
+        <div><div class="glyphs-text">R$ 189,90 · 750 ml · 14% · Douro</div><p class="spec">DM Sans 100–1000, eixo óptico 9–40 · sem algarismos tabulares: alinhe preços à direita</p></div>
+      </div>
+      <ul class="rules" style="margin-top:20px">
+        <li><b>Playfair só a partir de 18 pt.</b> Abaixo disso os traços finos somem; use DM Sans.</li>
+        <li><b>Elementos do sistema ficam em SF Pro:</b> alertas, menus de ação, teclado, seletores de data e a barra de status.</li>
+        <li><b>Dynamic Type:</b> cada estilo escala com o text style do iOS indicado (UIFontMetrics no iOS, textScaler no Flutter). Teste no maior tamanho de acessibilidade: o nome do vinho quebra linha, nunca trunca.</li>
+      </ul>
+    </section>
+
+    <!-- ================= ESPAÇO E FORMA ================= -->
+    <section class="block" id="forma">
+      <h2>Espaço e forma</h2>
+      <p class="lede">Base de 4 pt. Grupos apertados por dentro e separação generosa entre grupos. Cantos sempre contínuos (squircle), e botões, chips e busca em cápsula, como os controles do iOS atual.</p>
+      <table class="tokens-table" data-space></table>
+      <h3 class="sub">Raios</h3>
+      <table class="tokens-table" data-radius></table>
+      <h3 class="sub">Profundidade</h3>
+      <p class="note">Sombra só no claro e só no que flutua. No escuro, a profundidade vem da superfície mais clara (<code>surface.elevated</code>).</p>
+      <div class="pair">
+        <div class="panel" data-theme="light"><div class="shadow-demo"><div style="box-shadow:var(--shadow-card)">shadow.card</div><div style="box-shadow:var(--shadow-floating);background:var(--color-surface-elevated)">shadow.floating</div></div></div>
+        <div class="panel" data-theme="dark"><div class="shadow-demo"><div>surface.default</div><div style="background:var(--color-surface-elevated)">surface.elevated</div></div></div>
+      </div>
+      <h3 class="sub">Medidas de toque</h3>
+      <table class="tokens-table" data-size></table>
+    </section>
+
+    <!-- ================= MOVIMENTO ================= -->
+    <section class="block" id="movimento">
+      <h2>Movimento</h2>
+      <p class="lede">O app usa as transições do iOS: push, sheet e o gesto de voltar. A marca entra num único momento autoral: quando uma garrafa entra na adega, o contador sobe com uma mola curta. Com Reduzir Movimento ativo, tudo vira fade de 200 ms.</p>
+      <div class="panel" style="max-width:560px">
+        <div class="motion-demo">
+          <button class="av-btn av-btn--primary" type="button" data-add><svg class="icon"><use href="#i-plus"/></svg>Adicionar à adega</button>
+          <span class="counter"><b data-count>12</b> garrafas</span>
+        </div>
+        <p class="spec"><code>motion.spring.cellar</code> · 500 ms, bounce 0,2 · só neste momento</p>
+      </div>
+      <table class="tokens-table" style="margin-top:24px">
+        <thead><tr><th>Token</th><th>Valor</th><th>Uso</th></tr></thead>
+        <tbody>
+          <tr><td><code>motion.spring.snappy</code></td><td>300 ms, bounce 0</td><td>Estados de controles, filtros</td></tr>
+          <tr><td><code>motion.spring.smooth</code></td><td>450 ms, bounce 0</td><td>Expandir células, mudar ordenação</td></tr>
+          <tr><td><code>motion.spring.cellar</code></td><td>500 ms, bounce 0,2</td><td>Garrafa entrando na adega</td></tr>
+          <tr><td><code>motion.duration.fade</code></td><td>200 ms</td><td>Substitui qualquer movimento com Reduzir Movimento</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ================= COMPONENTES ================= -->
+    <section class="block" id="botoes">
+      <h2>Botões</h2>
+      <p class="lede">Cápsulas com 44 pt de altura (50 pt no botão principal de uma tela). Um único botão primário por tela. Texto do botão é a ação: “Adicionar à adega”, nunca “OK”.</p>
+      <template id="t-buttons">
+        <div class="stack">
+          <div class="row">
+            <button class="av-btn av-btn--primary" type="button">Adicionar à adega</button>
+            <button class="av-btn av-btn--primary is-pressed" type="button">Pressionado</button>
+          </div>
+          <div class="row">
+            <button class="av-btn av-btn--secondary" type="button"><svg class="icon"><use href="#i-bell"/></svg>Criar alerta</button>
+            <button class="av-btn av-btn--plain" type="button">Ver todas as lojas</button>
+          </div>
+          <div class="row">
+            <button class="av-btn av-btn--destructive" type="button">Remover da adega</button>
+            <button class="av-btn av-btn--primary" type="button" disabled>Indisponível</button>
+            <button class="av-btn av-btn--primary" type="button" aria-busy="true"><span class="spinner" aria-hidden="true"></span>Buscando preços</button>
+          </div>
+          <div class="row">
+            <button class="av-btn av-btn--sm av-btn--secondary" type="button">Compacto</button>
+            <button class="av-icon-btn" type="button" aria-label="Compartilhar"><svg class="icon lg"><use href="#i-share"/></svg></button>
+          </div>
+        </div>
+      </template>
+      <div class="pair" data-demo="t-buttons"></div>
+      <p class="spec">Principal <code>action.primary</code> + <code>label.on-action</code> · Secundário <code>action.secondary</code> + <code>tint.default</code> · Destrutivo <code>status.danger-subtle</code> + <code>status.danger</code> · Raio <code>radius.full</code></p>
+    </section>
+
+    <section class="block" id="busca">
+      <h2>Busca e filtros</h2>
+      <p class="lede">O campo de busca é a porta do MVP. Fica no topo da aba Buscar, em cápsula, e os filtros vêm logo abaixo como chips que rolam na horizontal. O filtro ativo inverte as cores.</p>
+      <template id="t-search">
+        <div class="stack">
+          <label class="av-search"><svg class="icon lg"><use href="#i-search"/></svg><input type="search" placeholder="Vinho, uva, produtor ou região" aria-label="Buscar vinhos"></label>
+          <label class="av-search is-focused"><svg class="icon lg"><use href="#i-search"/></svg><input type="search" value="malbec mendoza" aria-label="Buscar vinhos"><button class="clear" type="button" aria-label="Limpar busca"><svg class="icon"><use href="#i-x"/></svg></button></label>
+          <div class="av-chips" role="group" aria-label="Filtros">
+            <button class="av-chip" type="button" aria-pressed="false"><svg class="icon"><use href="#i-sliders"/></svg>Filtros</button>
+            <button class="av-chip" type="button" aria-pressed="true">Tinto</button>
+            <button class="av-chip" type="button" aria-pressed="false">Até R$ 150</button>
+            <button class="av-chip" type="button" aria-pressed="false">Argentina</button>
+            <button class="av-chip" type="button" aria-pressed="false"><svg class="icon"><use href="#i-sort"/></svg>Menor preço</button>
+          </div>
+        </div>
+      </template>
+      <div class="pair" data-demo="t-search"></div>
+      <p class="spec">Campo <code>fill.tertiary</code>, placeholder <code>label.secondary</code>, foco com anel de 2 pt em <code>tint.default</code> · Chip ativo <code>label.primary</code> sobre <code>background.base</code> invertido</p>
+    </section>
+
+    <section class="block" id="dados">
+      <h2>Preço, selos e avaliação</h2>
+      <p class="lede">Preço é a informação mais importante da busca, então ganha peso e nunca fica em serifa. O selo dourado “Melhor preço” aparece uma vez por lista, só na oferta mais barata.</p>
+      <template id="t-data">
+        <div class="stack">
+          <div class="row" style="gap:20px;align-items:baseline">
+            <span class="av-price av-price--hero"><span class="cur">R$</span>189,90</span>
+            <span class="av-price"><span class="cur">R$</span>214,00</span>
+            <span class="av-price-was">R$ 239,00</span>
+          </div>
+          <div class="row">
+            <span class="av-badge av-badge--best"><svg class="icon"><use href="#i-tag"/></svg>Melhor preço</span>
+            <span class="av-badge av-badge--success"><svg class="icon"><use href="#i-down"/></svg>Caiu 12%</span>
+            <span class="av-badge av-badge--success">No ponto</span>
+            <span class="av-badge av-badge--warning">Beber logo</span>
+            <span class="av-badge av-badge--danger">Passou do ponto</span>
+            <span class="av-badge av-badge--neutral">Guardar</span>
+          </div>
+          <div class="row" style="gap:20px">
+            <span class="av-rating"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg>4,3 <small>(1.284)</small></span>
+            <span class="av-type" data-type="tinto">Tinto</span>
+            <span class="av-type" data-type="branco">Branco</span>
+            <span class="av-type" data-type="espumante">Espumante</span>
+          </div>
+        </div>
+      </template>
+      <div class="pair" data-demo="t-data"></div>
+      <ul class="rules" style="margin-top:20px">
+        <li><b>Formato de preço:</b> <code>R$ 189,90</code> (pt-BR, vírgula decimal, símbolo menor e em <code>label.secondary</code>).</li>
+        <li><b>Avaliação:</b> uma estrela em <code>accent.default</code>, nota com uma casa decimal e o número de avaliações. Nunca cinco estrelas parciais.</li>
+        <li><b>Estado da garrafa</b> (guardar, no ponto, beber logo, passou do ponto) sempre com texto. A cor só reforça.</li>
+      </ul>
+    </section>
+
+    <section class="block" id="vinho">
+      <h2>Vinho na lista</h2>
+      <p class="lede">A linha de resultado da busca. Nome em Playfair, procedência em DM Sans, e o menor preço alinhado à direita com quantas lojas foram comparadas.</p>
+      <template id="t-winerow">
+        <div class="av-group">
+          <div class="av-wine-row">
+            <div class="av-bottle" style="--dot:var(--color-wine-type-tinto)"><svg><use href="#bottle"/></svg></div>
+            <div class="body">
+              <span class="av-wine-name">Cerro Azul Malbec Reserva 2021</span>
+              <span class="av-meta">Bodega Cerro Azul · Mendoza, Argentina</span>
+              <div class="foot"><span class="av-rating"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg>4,2</span><span class="av-badge av-badge--best"><svg class="icon"><use href="#i-tag"/></svg>Melhor preço</span></div>
+            </div>
+            <div class="aside"><span class="av-price"><span class="cur">R$</span>119,90</span><span class="stores">em 9 lojas</span></div>
+          </div>
+          <div class="av-wine-row">
+            <div class="av-bottle" style="--dot:var(--color-wine-type-branco)"><svg><use href="#bottle"/></svg></div>
+            <div class="body">
+              <span class="av-wine-name">Château Lune Blanche 2020</span>
+              <span class="av-meta">Bordeaux, França · Branco</span>
+              <div class="foot"><span class="av-rating"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg>4,0</span></div>
+            </div>
+            <div class="aside"><span class="av-price"><span class="cur">R$</span>248,00</span><span class="stores">em 3 lojas</span></div>
+          </div>
+        </div>
+      </template>
+      <div class="pair" data-demo="t-winerow"></div>
+      <p class="spec">Nome <code>typography.wine-name</code> (18 pt) · Procedência <code>typography.subheadline</code> · Preço <code>typography.body-strong</code> · Miniatura 40×56 pt, <code>radius.sm</code>, cor do tipo quando não há foto</p>
+    </section>
+
+    <section class="block" id="ofertas">
+      <h2>Comparação de preços</h2>
+      <p class="lede">O “Buscapé” do vinho. Ofertas ordenadas do menor para o maior preço, com frete e prazo na segunda linha. A mais barata ganha fundo tingido e o selo dourado. Preço e frete são sempre visíveis; nada de “a partir de”.</p>
+      <template id="t-offers">
+        <div class="av-group">
+          <div class="av-offer is-best">
+            <span class="logo" aria-hidden="true">ES</span>
+            <div class="store"><b>Empório do Sul</b><span>Frete R$ 19,90 · chega em 3 dias</span></div>
+            <div class="price"><span class="av-price"><span class="cur">R$</span>189,90</span><span class="av-badge av-badge--best">Melhor preço</span></div>
+          </div>
+          <div class="av-offer">
+            <span class="logo" aria-hidden="true">VC</span>
+            <div class="store"><b>Vinhos &amp; Cia</b><span>Frete grátis · chega em 5 dias</span></div>
+            <div class="price"><span class="av-price"><span class="cur">R$</span>204,50</span></div>
+          </div>
+          <div class="av-offer">
+            <span class="logo" aria-hidden="true">AC</span>
+            <div class="store"><b>Adega Central</b><span>Retirar na loja · Porto Alegre</span></div>
+            <div class="price"><span class="av-price"><span class="cur">R$</span>219,00</span></div>
+          </div>
+        </div>
+      </template>
+      <div class="pair" data-demo="t-offers"></div>
+      <p class="spec">Melhor oferta <code>surface.tinted</code> + <code>accent.subtle</code>/<code>accent.ink</code> · Linha mínima 64 pt · Toque abre a loja no navegador do sistema (SFSafariViewController)</p>
+    </section>
+
+    <section class="block" id="janela">
+      <h2>Janela de consumo</h2>
+      <p class="lede">O componente-assinatura do AVYN. Uma régua de anos mostra quando o vinho está bom para beber (faixa dourada), o auge (dourado cheio) e onde estamos hoje (marcador vinho). Responde à pergunta que o colecionador mais faz: abro agora ou espero?</p>
+      <figure class="window-anatomy" aria-label="Anatomia da janela de consumo">
+        <div class="av-window av-window--anatomy">
+          <div class="head"><b>Janela de consumo</b><span class="av-badge av-badge--success">No ponto</span></div>
+          <div class="track"><span class="range" style="left:16.7%;right:16.7%"></span><span class="peak" style="left:33.3%;right:41.7%"></span><span class="now" style="left:40.8%" data-label="Hoje"></span></div>
+          <div class="years"><span>2022</span><span>2024</span><span>2026</span><span>2028</span><span>2030</span><span>2032</span><span>2034</span></div>
+        </div>
+        <ol class="anatomy-keys">
+          <li><i class="k k-track"></i><b>Régua</b> dois anos antes e dois depois da janela</li>
+          <li><i class="k k-range"></i><b>Janela</b> anos em que o vinho está bom para beber</li>
+          <li><i class="k k-peak"></i><b>Auge</b> os melhores anos dentro da janela</li>
+          <li><i class="k k-now"></i><b>Hoje</b> marcador no tint; decide o selo de estado</li>
+        </ol>
+      </figure>
+      <h3 class="sub">Os quatro estados</h3>
+      <p class="note">O selo sai da posição de hoje: antes da janela, <b>Guardar</b>; dentro dela até o fim do auge, <b>No ponto</b>; depois do auge, <b>Beber logo</b>; depois da janela, <b>Passou do ponto</b>. Quando hoje cai fora da régua, ela se estende até hoje.</p>
+      <template id="t-window">
+        <div class="stack" style="gap:28px">
+          <div class="av-window" role="img" aria-label="Janela de consumo de 2028 a 2036, auge de 2030 a 2033. Hoje: guardar.">
+            <div class="head"><span class="av-meta">Janela 2028–2036 · auge 2030–2033</span><span class="av-badge av-badge--neutral">Guardar</span></div>
+            <div class="track" style="margin-top:20px"><span class="range" style="left:16.7%;right:16.7%"></span><span class="peak" style="left:33.3%;right:41.7%"></span><span class="now" style="left:7.5%" data-label="Hoje"></span></div>
+            <div class="years"><span>2026</span><span>2032</span><span>2038</span></div>
+          </div>
+          <div class="av-window" role="img" aria-label="Janela de consumo de 2024 a 2032, auge de 2026 a 2029. Hoje: no ponto.">
+            <div class="head"><span class="av-meta">Janela 2024–2032 · auge 2026–2029</span><span class="av-badge av-badge--success">No ponto</span></div>
+            <div class="track" style="margin-top:20px"><span class="range" style="left:16.7%;right:16.7%"></span><span class="peak" style="left:33.3%;right:41.7%"></span><span class="now" style="left:40.8%" data-label="Hoje"></span></div>
+            <div class="years"><span>2022</span><span>2028</span><span>2034</span></div>
+          </div>
+          <div class="av-window" role="img" aria-label="Janela de consumo de 2020 a 2028, auge de 2022 a 2025. Hoje: beber logo.">
+            <div class="head"><span class="av-meta">Janela 2020–2028 · auge 2022–2025</span><span class="av-badge av-badge--warning">Beber logo</span></div>
+            <div class="track" style="margin-top:20px"><span class="range" style="left:16.7%;right:16.7%"></span><span class="peak" style="left:33.3%;right:41.7%"></span><span class="now" style="left:74.2%" data-label="Hoje"></span></div>
+            <div class="years"><span>2018</span><span>2024</span><span>2030</span></div>
+          </div>
+          <div class="av-window" role="img" aria-label="Janela de consumo de 2015 a 2024, auge de 2018 a 2021. Hoje: passou do ponto.">
+            <div class="head"><span class="av-meta">Janela 2015–2024 · auge 2018–2021</span><span class="av-badge av-badge--danger">Passou do ponto</span></div>
+            <div class="track" style="margin-top:20px"><span class="range" style="left:13.3%;right:26.7%"></span><span class="peak" style="left:33.3%;right:46.7%"></span><span class="now" style="left:92.7%" data-label="Hoje"></span></div>
+            <div class="years"><span>2013</span><span>2020</span><span>2028</span></div>
+          </div>
+          <div class="av-window av-window--compact" role="img" aria-label="Janela de 2023 a 2026. Beber logo.">
+            <div class="head"><span class="av-meta">Compacta, para listas</span><span class="av-badge av-badge--warning">Beber logo</span></div>
+            <div class="track"><span class="range" style="left:10%;right:40%"></span><span class="peak" style="left:20%;right:52%"></span><span class="now" style="left:40%"></span></div>
+          </div>
+        </div>
+      </template>
+      <div class="pair" data-demo="t-window"></div>
+      <ul class="rules" style="margin-top:20px">
+        <li><b>Sempre com texto:</b> o selo de estado e o rótulo de acessibilidade dizem a janela em palavras.</li>
+        <li><b>A régua começa dois anos antes da janela e termina dois depois</b>, para que “hoje” nunca fique colado na borda.</li>
+        <li>A janela vem do produtor ou da crítica. Quando não houver dado, o componente não aparece; nunca mostre uma janela estimada sem dizer que é estimativa.</li>
+      </ul>
+    </section>
+
+    <section class="block" id="adega">
+      <h2>Adega</h2>
+      <p class="lede">O resumo mostra o que importa para quem guarda vinho: quantas garrafas há, quantas estão prontas e quantas pedem para ser abertas logo. Cada garrafa traz a janela compacta e a quantidade (×3). Para mudar a quantidade, o detalhe da garrafa usa o stepper do sistema, com o número ao lado.</p>
+      <template id="t-cellar">
+        <div class="stack">
+          <div class="av-cellar-summary">
+            <div><b>24</b><span>garrafas</span></div>
+            <div class="ready"><b>7</b><span>no ponto</span></div>
+            <div><b>3</b><span>beber logo</span></div>
+          </div>
+          <div class="av-group">
+            <div class="av-bottle-row">
+              <div class="av-bottle" style="--dot:var(--color-wine-type-tinto)"><svg><use href="#bottle"/></svg></div>
+              <div class="body">
+                <span class="av-wine-name">Quinta do Vale Alto Reserva 2019</span>
+                <span class="av-meta">Douro · guardado em 2023</span>
+                <div class="av-window av-window--compact"><div class="track"><span class="range" style="left:15%;right:15%"></span><span class="peak" style="left:35%;right:40%"></span><span class="now" style="left:42%"></span></div></div>
+              </div>
+              <span class="av-count">×3</span>
+            </div>
+            <div class="av-bottle-row">
+              <div class="av-bottle" style="--dot:var(--color-wine-type-espumante)"><svg><use href="#bottle"/></svg></div>
+              <div class="body">
+                <span class="av-wine-name">Casa Serrana Brut Nature</span>
+                <span class="av-meta">Serra Gaúcha · <span style="color:var(--color-status-warning);font-weight:600">beber logo</span></span>
+              </div>
+              <span class="av-count">×1</span>
+            </div>
+          </div>
+          <div class="av-group">
+            <div class="av-edit-row">
+              <span class="lbl">Garrafas</span>
+              <output data-qty>3</output>
+              <div class="av-stepper" data-stepper role="group" aria-label="Quantidade de garrafas"><button type="button" aria-label="Menos uma garrafa"><svg class="icon"><use href="#i-minus"/></svg></button><button type="button" aria-label="Mais uma garrafa"><svg class="icon"><use href="#i-plus"/></svg></button></div>
+            </div>
+          </div>
+        </div>
+      </template>
+      <div class="pair" data-demo="t-cellar"></div>
+      <p class="spec">Números do resumo em <code>font.family.display</code> 28 pt · “no ponto” em <code>status.success</code> · Arrastar a linha para a esquerda revela “Abrir garrafa” e “Remover” (swipe actions do sistema)</p>
+    </section>
+
+    <section class="block" id="vazio">
+      <h2>Estados vazios e toast</h2>
+      <p class="lede">Estado vazio diz o que aconteceu e o que fazer, com uma ação só. O símbolo da taça-lupa ocupa o lugar da ilustração. O toast confirma ações rápidas e some sozinho em 3 segundos.</p>
+      <template id="t-empty">
+        <div class="stack">
+          <div class="av-empty" style="background:var(--color-surface-default);border-radius:var(--radius-lg)">
+            <img data-symbol src="../../assets/brand/logo/taca-lupa/simbolo-claro.svg" alt="">
+            <h3>Sua adega está vazia</h3>
+            <p>Busque um vinho e toque em “Adicionar à adega” para começar a guardar.</p>
+            <button class="av-btn av-btn--primary" type="button">Buscar vinhos</button>
+          </div>
+          <div class="av-empty" style="background:var(--color-surface-default);border-radius:var(--radius-lg)">
+            <img data-symbol src="../../assets/brand/logo/taca-lupa/simbolo-claro.svg" alt="">
+            <h3>Nenhum vinho para “malbek”</h3>
+            <p>Confira a grafia ou tente pela uva, pelo produtor ou pela região.</p>
+            <button class="av-btn av-btn--secondary" type="button">Buscar “malbec”</button>
+          </div>
+          <div class="av-toast"><svg class="icon av-toast-ok" aria-hidden="true"><use href="#i-check"/></svg><span>Adicionado à adega</span><a href="#adega">Desfazer</a></div>
+        </div>
+      </template>
+      <div class="pair" data-demo="t-empty"></div>
+    </section>
+
+    <section class="block" id="whatsapp">
+      <h2>Aviso no WhatsApp</h2>
+      <p class="lede">No MVP o WhatsApp só envia avisos; o usuário não conversa com o app. Os tipos de aviso ainda não estão definidos. Abaixo, três candidatos para mostrar o padrão: a marca entra pelo avatar e por um card curto, o resto é a interface do WhatsApp.</p>
+      <div class="pair">
+        <div class="av-wa">
+          <div class="chat-head"><img src="../../assets/brand/logo/taca-lupa/icone-escuro.svg" alt=""><div>AVYN<small>conta comercial</small></div></div>
+          <div class="bubble">
+            <b>O preço caiu</b> no vinho que você acompanha:
+            <div class="card"><div class="av-bottle" style="--dot:var(--color-wine-type-tinto);background:#fff"><svg><use href="#bottle"/></svg></div><div><div class="n">Cerro Azul Malbec 2021</div><div class="p">R$ 119,90 <span style="color:#6C6460;font-weight:400;text-decoration:line-through;font-size:13px">R$ 136,00</span></div></div></div>
+            Melhor oferta em Empório do Sul.
+            <time>09:12</time>
+            <span class="cta">Ver ofertas</span>
+          </div>
+        </div>
+        <div class="av-wa">
+          <div class="chat-head"><img src="../../assets/brand/logo/taca-lupa/icone-escuro.svg" alt=""><div>AVYN<small>conta comercial</small></div></div>
+          <div class="bubble">
+            Da sua adega: <b>Casa Serrana Brut Nature</b> está no fim da janela de consumo. Boa hora para abrir.
+            <time>18:40</time>
+            <span class="cta">Abrir a adega</span>
+          </div>
+          <div class="bubble">
+            <b>Espumante da semana:</b> Casa Serrana Brut Nature por R$ 59,90 no Empório do Sul, o menor preço entre 4 lojas.
+            <time>10:05</time>
+            <span class="cta">Ver ofertas</span>
+          </div>
+        </div>
+      </div>
+      <ul class="rules" style="margin-top:20px">
+        <li><b>Uma ideia por mensagem</b>, até três linhas, e um botão de ação que abre o app na tela certa.</li>
+        <li><b>Preço sempre com a loja</b> e, quando houver, o preço anterior riscado.</li>
+        <li><b>Avatar:</b> ícone escuro da taça-lupa (contraste melhor dentro do círculo do WhatsApp). Nome do perfil: AVYN.</li>
+        <li>Simulação. Mensagens e preços são fictícios, e as cores do WhatsApp aparecem só para dar contexto.</li>
+      </ul>
+    </section>
+
+    <!-- ================= TELAS ================= -->
+    <section class="block" id="telas">
+      <h2>Telas de referência</h2>
+      <p class="lede">Os componentes montados nas três telas do MVP. A estrutura de abas é provisória (a navegação final ainda não foi decidida) e todo o conteúdo é fictício.</p>
+      <div class="phones">
+        <div class="phone-wrap">
+          <div class="phone" data-theme="light">
+            <div class="status"><span>9:41</span><span class="island"></span><svg viewBox="0 0 68 13"><rect x="0" y="7" width="3" height="6" rx="1"/><rect x="5" y="5" width="3" height="8" rx="1"/><rect x="10" y="3" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="13" rx="1"/><rect x="40" y="1" width="24" height="11" rx="3.5" fill="none" stroke="currentColor" stroke-width="1"/><rect x="42" y="3" width="17" height="7" rx="2"/></svg></div>
+            <div class="content">
+              <h1 class="type-large-title large-title">Buscar</h1>
+              <label class="av-search is-focused"><svg class="icon lg"><use href="#i-search"/></svg><input type="search" value="malbec" aria-label="Buscar vinhos"><button class="clear" type="button" aria-label="Limpar busca"><svg class="icon"><use href="#i-x"/></svg></button></label>
+              <div class="av-chips"><span class="av-chip" aria-pressed="false"><svg class="icon"><use href="#i-sliders"/></svg>Filtros</span><span class="av-chip" aria-pressed="true">Tinto</span><span class="av-chip" aria-pressed="false">Até R$ 150</span><span class="av-chip" aria-pressed="false">Argentina</span></div>
+              <p class="type-footnote" style="margin:0;color:var(--color-label-secondary)">38 vinhos · preços de 12 lojas · menor preço primeiro</p>
+              <div class="av-group" style="margin:0 -4px">
+                <div class="av-wine-row">
+                  <div class="av-bottle" style="--dot:var(--color-wine-type-tinto)"><svg><use href="#bottle"/></svg></div>
+                  <div class="body"><span class="av-wine-name">Cerro Azul Malbec Reserva 2021</span><span class="av-meta">Mendoza, Argentina</span><div class="foot"><span class="av-rating"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg>4,2</span><span class="av-badge av-badge--best">Melhor preço</span></div></div>
+                  <div class="aside"><span class="av-price"><span class="cur">R$</span>119,90</span><span class="stores">9 lojas</span></div>
+                </div>
+                <div class="av-wine-row">
+                  <div class="av-bottle" style="--dot:var(--color-wine-type-tinto)"><svg><use href="#bottle"/></svg></div>
+                  <div class="body"><span class="av-wine-name">Altos de Uco Malbec 2022</span><span class="av-meta">Valle de Uco, Argentina</span><div class="foot"><span class="av-rating"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg>4,0</span></div></div>
+                  <div class="aside"><span class="av-price"><span class="cur">R$</span>134,50</span><span class="stores">6 lojas</span></div>
+                </div>
+                <div class="av-wine-row">
+                  <div class="av-bottle" style="--dot:var(--color-wine-type-tinto)"><svg><use href="#bottle"/></svg></div>
+                  <div class="body"><span class="av-wine-name">Finca Piedra Sola Malbec 2020</span><span class="av-meta">Salta, Argentina</span><div class="foot"><span class="av-rating"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg>4,4</span></div></div>
+                  <div class="aside"><span class="av-price"><span class="cur">R$</span>148,00</span><span class="stores">4 lojas</span></div>
+                </div>
+              </div>
+            </div>
+            <nav class="tabbar" aria-label="Abas (provisório)"><span class="on"><svg class="icon"><use href="#i-search"/></svg>Buscar</span><span><svg class="icon"><use href="#i-bottle"/></svg>Adega</span><span><svg class="icon"><use href="#i-user"/></svg>Perfil</span></nav>
+            <span class="home"></span>
+          </div>
+          <p><b>Busca com resultados.</b> Campo e filtros no topo, contagem honesta de lojas, menor preço primeiro.</p>
+        </div>
+
+        <div class="phone-wrap">
+          <div class="phone" data-theme="dark">
+            <div class="status"><span>9:41</span><span class="island"></span><svg viewBox="0 0 68 13"><rect x="0" y="7" width="3" height="6" rx="1"/><rect x="5" y="5" width="3" height="8" rx="1"/><rect x="10" y="3" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="13" rx="1"/><rect x="40" y="1" width="24" height="11" rx="3.5" fill="none" stroke="currentColor" stroke-width="1"/><rect x="42" y="3" width="17" height="7" rx="2"/></svg></div>
+            <div class="content" style="gap:14px">
+              <div class="navbar"><span class="back"><svg class="icon"><use href="#i-chev-l"/></svg>Buscar</span><span class="acts"><span class="av-icon-btn" style="width:36px;height:36px"><svg class="icon"><use href="#i-share"/></svg></span></span></div>
+              <div class="hero-bottle"><svg viewBox="0 0 18 44" style="--dot:var(--color-wine-type-tinto)"><use href="#bottle"/></svg><span class="synthetic">foto do rótulo</span></div>
+              <div class="detail-head">
+                <h1 class="type-title-1" style="margin:0">Cerro Azul Malbec Reserva 2021</h1>
+                <span class="av-meta">Bodega Cerro Azul · Mendoza, Argentina</span>
+                <div class="row"><span class="av-rating"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg>4,2 <small>(1.284)</small></span><span class="av-type" data-type="tinto">Tinto · 750 ml</span></div>
+              </div>
+              <div class="best"><div><span class="av-price av-price--hero"><span class="cur">R$</span>119,90</span><small>Melhor preço em Empório do Sul</small></div><span class="av-badge av-badge--success"><svg class="icon"><use href="#i-down"/></svg>Caiu 12%</span></div>
+              <button class="av-btn av-btn--primary av-btn--lg av-btn--block" type="button"><svg class="icon"><use href="#i-plus"/></svg>Adicionar à adega</button>
+              <div class="card av-window" aria-label="Janela de consumo 2023 a 2031">
+                <div class="head"><b>Janela de consumo</b><span class="av-badge av-badge--success">No ponto</span></div>
+                <div class="track" style="margin-top:18px"><span class="range" style="left:15%;right:15%"></span><span class="peak" style="left:35%;right:40%"></span><span class="now" style="left:45%" data-label="Hoje"></span></div>
+                <div class="years"><span>2021</span><span>2026</span><span>2033</span></div>
+              </div>
+            </div>
+            <nav class="tabbar" aria-label="Abas (provisório)"><span class="on"><svg class="icon"><use href="#i-search"/></svg>Buscar</span><span><svg class="icon"><use href="#i-bottle"/></svg>Adega</span><span><svg class="icon"><use href="#i-user"/></svg>Perfil</span></nav>
+            <span class="home"></span>
+          </div>
+          <p><b>Detalhe do vinho, modo escuro.</b> Preço e ação principal acima da dobra; a comparação de lojas vem logo abaixo, ao rolar.</p>
+        </div>
+
+        <div class="phone-wrap">
+          <div class="phone" data-theme="light">
+            <div class="status"><span>9:41</span><span class="island"></span><svg viewBox="0 0 68 13"><rect x="0" y="7" width="3" height="6" rx="1"/><rect x="5" y="5" width="3" height="8" rx="1"/><rect x="10" y="3" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="13" rx="1"/><rect x="40" y="1" width="24" height="11" rx="3.5" fill="none" stroke="currentColor" stroke-width="1"/><rect x="42" y="3" width="17" height="7" rx="2"/></svg></div>
+            <div class="content">
+              <h1 class="type-large-title large-title">Adega</h1>
+              <div class="av-cellar-summary"><div><b>24</b><span>garrafas</span></div><div class="ready"><b>7</b><span>no ponto</span></div><div><b>3</b><span>beber logo</span></div></div>
+              <div class="av-chips"><span class="av-chip" aria-pressed="true">Todas</span><span class="av-chip" aria-pressed="false">No ponto</span><span class="av-chip" aria-pressed="false">Beber logo</span><span class="av-chip" aria-pressed="false">Guardar</span></div>
+              <div class="av-group" style="margin:0 -4px">
+                <div class="av-bottle-row">
+                  <div class="av-bottle" style="--dot:var(--color-wine-type-espumante)"><svg><use href="#bottle"/></svg></div>
+                  <div class="body"><span class="av-wine-name">Casa Serrana Brut Nature</span><span class="av-meta">Serra Gaúcha · <span style="color:var(--color-status-warning);font-weight:600">beber logo</span></span></div>
+                  <span class="av-count">×1</span>
+                </div>
+                <div class="av-bottle-row">
+                  <div class="av-bottle" style="--dot:var(--color-wine-type-tinto)"><svg><use href="#bottle"/></svg></div>
+                  <div class="body"><span class="av-wine-name">Quinta do Vale Alto Reserva 2019</span><span class="av-meta">Douro · <span style="color:var(--color-status-success);font-weight:600">no ponto</span></span><div class="av-window av-window--compact"><div class="track"><span class="range" style="left:15%;right:15%"></span><span class="peak" style="left:35%;right:40%"></span><span class="now" style="left:42%"></span></div></div></div>
+                  <span class="av-count">×3</span>
+                </div>
+                <div class="av-bottle-row">
+                  <div class="av-bottle" style="--dot:var(--color-wine-type-branco)"><svg><use href="#bottle"/></svg></div>
+                  <div class="body"><span class="av-wine-name">Château Lune Blanche 2020</span><span class="av-meta">Bordeaux · guardar até 2028</span><div class="av-window av-window--compact"><div class="track"><span class="range" style="left:45%;right:10%"></span><span class="peak" style="left:60%;right:20%"></span><span class="now" style="left:30%"></span></div></div></div>
+                  <span class="av-count">×2</span>
+                </div>
+              </div>
+            </div>
+            <nav class="tabbar" aria-label="Abas (provisório)"><span><svg class="icon"><use href="#i-search"/></svg>Buscar</span><span class="on"><svg class="icon"><use href="#i-bottle"/></svg>Adega</span><span><svg class="icon"><use href="#i-user"/></svg>Perfil</span></nav>
+            <span class="home"></span>
+          </div>
+          <p><b>Adega.</b> Resumo, filtro por estado e garrafas ordenadas pela urgência: o que precisa ser aberto logo vem primeiro.</p>
+        </div>
+
+        <div class="phone-wrap">
+          <div class="phone" data-theme="dark">
+            <div class="status"><span>9:41</span><span class="island"></span><svg viewBox="0 0 68 13"><rect x="0" y="7" width="3" height="6" rx="1"/><rect x="5" y="5" width="3" height="8" rx="1"/><rect x="10" y="3" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="13" rx="1"/><rect x="40" y="1" width="24" height="11" rx="3.5" fill="none" stroke="currentColor" stroke-width="1"/><rect x="42" y="3" width="17" height="7" rx="2"/></svg></div>
+            <div class="content">
+              <h1 class="type-large-title large-title">Adega</h1>
+              <div class="av-empty" style="margin-top:96px">
+                <img src="../../assets/brand/logo/taca-lupa/simbolo-escuro.svg" alt="">
+                <h2>Sua adega está vazia</h2>
+                <p>Busque um vinho e toque em “Adicionar à adega” para começar a guardar.</p>
+                <button class="av-btn av-btn--primary" type="button">Buscar vinhos</button>
+              </div>
+            </div>
+            <nav class="tabbar" aria-label="Abas (provisório)"><span><svg class="icon"><use href="#i-search"/></svg>Buscar</span><span class="on"><svg class="icon"><use href="#i-bottle"/></svg>Adega</span><span><svg class="icon"><use href="#i-user"/></svg>Perfil</span></nav>
+            <span class="home"></span>
+          </div>
+          <p><b>Adega vazia, modo escuro.</b> O símbolo da taça-lupa no lugar da ilustração e uma ação só.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>Fonte da verdade: <code>tokens/</code> · gerado por <code>tools/tokens/build.py</code></span>
+      <a href="../foundations/">Fundamentos</a>
+      <a href="../components/">Componentes</a>
+      <a href="../patterns/">Padrões iOS</a>
+      <span>Fontes sob licença OFL · conteúdo fictício</span>
+    </footer>
+  </main>
+</div>
+
+<script>
+(() => {
+  const root = document.documentElement;
+  const store = { get() { try { return localStorage.getItem("avyn-theme"); } catch (e) { return null; } }, set(v) { try { localStorage.setItem("avyn-theme", v); } catch (e) {} } };
+  const applyTheme = (v) => {
+    if (v === "light" || v === "dark") root.setAttribute("data-theme", v); else root.removeAttribute("data-theme");
+    document.querySelectorAll("[data-set-theme]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.setTheme === (v || "system"))));
+  };
+  applyTheme(store.get() || "system");
+  document.querySelectorAll("[data-set-theme]").forEach(b => b.addEventListener("click", () => { store.set(b.dataset.setTheme); applyTheme(b.dataset.setTheme); }));
+
+  // Demos: cada template vira um painel claro e um escuro.
+  document.querySelectorAll("[data-demo]").forEach(slot => {
+    const tpl = document.getElementById(slot.dataset.demo);
+    for (const [mode, label] of [["light", "Claro"], ["dark", "Escuro"]]) {
+      const panel = document.createElement("div");
+      panel.className = "panel"; panel.dataset.theme = mode;
+      panel.innerHTML = `<span class="mode">${label}</span>`;
+      panel.appendChild(tpl.content.cloneNode(true));
+      panel.querySelectorAll("[data-symbol]").forEach(img => { img.src = `../../assets/brand/logo/taca-lupa/simbolo-${mode === "light" ? "claro" : "escuro"}.svg`; });
+      if (mode === "dark") panel.querySelectorAll(".av-toast").forEach(t => t.classList.add("on-dark"));
+      slot.appendChild(panel);
+    }
+  });
+
+  // Papéis de cor (lidos das variáveis CSS do próprio painel)
+  const roles = [
+    ["Fundos", [["background.base", "Fundo das telas"], ["background.grouped", "Listas agrupadas"], ["surface.default", "Células e cards"], ["surface.elevated", "Sheets e menus"], ["surface.tinted", "Destaque da marca"]]],
+    ["Texto", [["label.primary", "Texto principal"], ["label.secondary", "Apoio e placeholder"], ["label.tertiary", "Só desabilitado"], ["separator.default", "Linhas entre células"]]],
+    ["Ação", [["tint.default", "Tudo que é tocável"], ["action.primary", "Botão principal"], ["action.secondary", "Botão secundário"], ["accent.default", "Dourado decorativo"], ["accent.ink", "Dourado como texto"]]],
+    ["Estado", [["status.success", "No ponto, preço caiu"], ["status.warning", "Beber logo"], ["status.danger", "Erro, destrutivo"]]],
+  ];
+  const toHex = (c) => { const m = c.match(/\d+(\.\d+)?/g); if (!m) return c; const [r, g, b] = m.map(Number); return "#" + [r, g, b].map(x => Math.round(x).toString(16).padStart(2, "0")).join("").toUpperCase(); };
+  document.querySelectorAll("[data-roles]").forEach(el => {
+    el.innerHTML = roles.map(([g, list]) => `<div class="role-group">${g}</div>` + list.map(([k, d]) => `<div class="role"><span class="sw" style="background:var(--color-${k.replace(".", "-")})"></span><span><span class="nm">${k}</span><br><span class="ds">${d}</span></span><span class="hx" data-hex></span></div>`).join("")).join("");
+  });
+  const fillHex = () => document.querySelectorAll(".role").forEach(r => { r.querySelector("[data-hex]").textContent = toHex(getComputedStyle(r.querySelector(".sw")).backgroundColor); });
+
+  // Escalas
+  const steps = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
+  document.querySelector("[data-scales]").innerHTML = [["wine", "Vinho"], ["gold", "Mel"], ["neutral", "Neutro"]].map(([s, n]) =>
+    `<div class="scale"><span>${n}</span>` + steps.map(st => `<span class="st" style="background:var(--color-${s}-${st});color:${st >= 500 ? "#F8F3EC" : "#16110F"}"><span>${st}</span><span data-sc="${s}-${st}"></span></span>`).join("") + "</div>").join("");
+  const fillScale = () => document.querySelectorAll("[data-sc]").forEach(e => { e.textContent = toHex(getComputedStyle(e.parentElement).backgroundColor).slice(1); });
+
+  // Tipos de vinho
+  document.querySelectorAll("[data-types]").forEach(el => {
+    el.innerHTML = [["tinto", "Tinto"], ["branco", "Branco"], ["rose", "Rosé"], ["espumante", "Espumante"], ["laranja", "Laranja"], ["fortificado", "Fortificado"]].map(([k, n]) => `<span class="av-type" data-type="${k}">${n}</span>`).join("");
+  });
+
+  // Tipografia
+  const typeRows = [
+    ["large-title", "Adega", "Playfair 600 · 34/40", "largeTitle"],
+    ["title-1", "Cerro Azul Malbec Reserva 2021", "Playfair 600 · 28/34", "title1"],
+    ["title-2", "Onde comprar", "Playfair 600 · 22/28", "title2"],
+    ["title-3", "Prontos para abrir", "Playfair 600 · 20/25", "title3"],
+    ["wine-name", "Quinta do Vale Alto Reserva 2019", "Playfair 600 · 18/23", "headline"],
+    ["price-hero", "R$ 119,90", "DM Sans 600 · 28/32", "title1"],
+    ["headline", "Empório do Sul", "DM Sans 600 · 17/22", "headline"],
+    ["body", "Tinto encorpado, taninos firmes e final longo.", "DM Sans 400 · 17/24", "body"],
+    ["body-strong", "Adicionar à adega", "DM Sans 600 · 17/22", "body"],
+    ["callout", "O preço caiu no vinho que você acompanha.", "DM Sans 400 · 16/22", "callout"],
+    ["subheadline", "Bodega Cerro Azul · Mendoza, Argentina", "DM Sans 400 · 15/20", "subheadline"],
+    ["footnote", "Frete R$ 19,90 · chega em 3 dias", "DM Sans 400 · 13/18", "footnote"],
+    ["caption", "Melhor preço", "DM Sans 500 · 12/16", "caption1"],
+    ["caption-2", "Buscar · Adega · Perfil", "DM Sans 500 · 11/13", "caption2"],
+  ];
+  document.querySelector("[data-typelist]").innerHTML = typeRows.map(([k, s, m, ios]) => `<div class="type-row"><div class="type-${k}">${s}</div><div class="meta"><b>typography.${k}</b>${m} · iOS ${ios}</div></div>`).join("");
+
+  // Tabelas de medida
+  const css = getComputedStyle(root);
+  const v = (n) => css.getPropertyValue(n).trim();
+  const spaces = ["0-5", "1", "2", "3", "4", "5", "6", "8", "10", "12", "16"];
+  document.querySelector("[data-space]").innerHTML = "<thead><tr><th>Token</th><th>Valor</th><th class='vis'></th></tr></thead><tbody>" + spaces.map(s => `<tr><td><code>space.${s}</code></td><td>${v("--space-" + s).replace("px", " pt")}</td><td class="vis"><div class="bar" style="width:var(--space-${s})"></div></td></tr>`).join("") + "</tbody>";
+  const radii = [["xs", "Selos"], ["sm", "Miniatura, campos"], ["md", "Avisos"], ["lg", "Cards e grupos"], ["xl", "Sheets"], ["full", "Botões, busca, chips"]];
+  document.querySelector("[data-radius]").innerHTML = "<thead><tr><th>Token</th><th>Valor</th><th>Uso</th><th class='vis'></th></tr></thead><tbody>" + radii.map(([r, u]) => `<tr><td><code>radius.${r}</code></td><td>${v("--radius-" + r).replace("px", " pt")}</td><td>${u}</td><td class="vis"><div class="rad" style="border-radius:var(--radius-${r})"></div></td></tr>`).join("") + "</tbody>";
+  const sizes = [["touch-target", "Mínimo de qualquer área tocável"], ["control-large", "Botão principal da tela"], ["control-regular", "Botão, busca, chip (área)"], ["control-small", "Botão compacto (área continua 44)"], ["row-min", "Altura mínima de célula"], ["bottle-thumb", "Miniatura da garrafa"]];
+  document.querySelector("[data-size]").innerHTML = "<thead><tr><th>Token</th><th>Valor</th><th>Uso</th></tr></thead><tbody>" + sizes.map(([s, u]) => `<tr><td><code>size.${s}</code></td><td>${v("--size-" + s).replace("px", " pt")}</td><td>${u}</td></tr>`).join("") + "</tbody>";
+
+  // Interações
+  const count = document.querySelector("[data-count]");
+  document.querySelector("[data-add]").addEventListener("click", () => { count.textContent = Number(count.textContent) + 1; count.classList.remove("bump"); void count.offsetWidth; count.classList.add("bump"); });
+  document.addEventListener("click", (e) => {
+    const chip = e.target.closest("button.av-chip");
+    if (chip && !chip.querySelector("svg")) chip.setAttribute("aria-pressed", String(chip.getAttribute("aria-pressed") !== "true"));
+    const step = e.target.closest("[data-stepper] button");
+    if (step) { const out = step.closest(".av-edit-row").querySelector("[data-qty]"); const n = Math.max(0, Number(out.textContent) + (step === step.parentElement.lastElementChild ? 1 : -1)); out.textContent = n; step.parentElement.firstElementChild.disabled = n === 0; }
+    const clear = e.target.closest(".av-search .clear");
+    if (clear) { const input = clear.parentElement.querySelector("input"); input.value = ""; input.focus(); }
+  });
+
+  // Sumário: item atual
+  const links = [...document.querySelectorAll(".toc a")];
+  const io = new IntersectionObserver((entries) => entries.forEach(en => { if (en.isIntersecting) links.forEach(a => a.classList.toggle("is-current", a.getAttribute("href") === "#" + en.target.id)); }), { rootMargin: "-20% 0px -70% 0px" });
+  document.querySelectorAll("section.block").forEach(s => io.observe(s));
+
+  const refresh = () => requestAnimationFrame(() => { fillHex(); fillScale(); });
+  refresh();
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", refresh);
+  document.querySelectorAll("[data-set-theme]").forEach(b => b.addEventListener("click", refresh));
+})();
+</script>
+</body>
+</html>

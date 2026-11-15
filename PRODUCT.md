@@ -19,7 +19,7 @@ Flutter (implementação futura, fora do escopo desta etapa). O Design System é
 
 ## Product Purpose
 
-Ecossistema digital do vinho que reúne, num único app, o que hoje está espalhado por vários (Vivino, Wine-Searcher, CellarTracker, InVintory, Oeni). Funcionalidades iniciais confirmadas: **1. Catálogo de vinhos** e **2. Busca e comparação de preços ("Buscapé" de vinhos) e busca geral** e **3. Canal WhatsApp** (ofertas e promoções enviadas ao usuário, estilo Trivago, e um sommelier virtual que responde dúvidas e busca o melhor preço de um vinho na internet, tudo pela conversa; referência: Magie). Visão posterior: adega virtual, análise sensorial guiada (com registro técnico e fotográfico), harmonização, aprendizado, compra/venda de garrafas, comunidade e confrarias, experiências em vinícolas e IA sommelier.
+Ecossistema digital do vinho que reúne, num único app, o que hoje está espalhado por vários (Vivino, Wine-Searcher, CellarTracker, InVintory, Oeni). Funcionalidades iniciais confirmadas (MVP com foco em busca e adega): **1. Busca de vinhos** (catálogo e comparação de preços, "Buscapé" de vinhos), **2. Adega virtual** e **3. Notificações e avisos por WhatsApp** (só do app para o usuário; tipos a definir). Visão posterior: análise sensorial guiada (com registro técnico e fotográfico), harmonização, aprendizado, compra/venda de garrafas, comunidade e confrarias, experiências em vinícolas e IA sommelier, inclusive um sommelier que conversa pelo WhatsApp, responde dúvidas e busca o melhor preço de um vinho (referência: Magie).
 
 ## Positioning
 
@@ -28,19 +28,20 @@ Ecossistema digital do vinho que reúne, num único app, o que hoje está espalh
 ## Operating Context
 
 - Mercado de lançamento: **Brasil**, idioma **PT-BR**, moeda **R$ (BRL)**.
-- Uso típico: no supermercado ou na loja (comparar preço, decidir a compra), no restaurante, em casa (adega, registro de degustação), em eventos/confrarias e pelo WhatsApp, sem abrir o app (perguntar ao sommelier, receber ofertas).
-- Monetização híbrida (valores a definir). Grátis: cadastro, busca de preços limitada, adega virtual, análise sensorial, comunidade e sommelier no WhatsApp. Premium: IA Sommelier, alertas de preço (app e WhatsApp), análise avançada da adega, busca global de preços e classificados entre particulares.
+- Uso típico: no supermercado ou na loja (comparar preço, decidir a compra), no restaurante, em casa (adega, registro de degustação), em eventos/confrarias, e recebendo avisos pelo WhatsApp.
+- Monetização híbrida (valores a definir). Grátis: cadastro, busca de preços limitada, adega virtual, análise sensorial, comunidade e sommelier no WhatsApp (pós-MVP). Premium: IA Sommelier, alertas de preço (app e WhatsApp), análise avançada da adega, busca global de preços e classificados entre particulares.
+
 ## Capabilities and Constraints
 
 - Esta etapa: identidade visual + Design System iOS no Figma, documentados no repositório. Sem código Flutter, sem backend, sem telas completas do produto.
-- Indefinidos (não inventar): preços do Premium, estrutura final de navegação (abas), parceiros/lojas reais, conteúdo editorial.
+- Indefinidos (não inventar): preços do Premium, estrutura final de navegação (abas), parceiros/lojas reais, conteúdo editorial, tipos de aviso enviados pelo WhatsApp no MVP.
 
 ## Brand Commitments
 
 - Nome: **AVYN**. Segmento: Wine & Lifestyle / Digital Product.
 - Atributos obrigatórios: sofisticação, exclusividade, elegância, modernidade, confiança, personalidade, acolhimento. Premium, mas não sisudo ou tradicional; deve parecer uma empresa digital premium contemporânea.
 - Famílias de cor obrigatórias: dourado, preto, vinho/bordô, branco. A identidade precisa ser reconhecível em Light e Dark Mode.
-- Mascote: uva original, fofa, minimalista e carismática, independente do logotipo e sem dominar a identidade.
+- Logo: taça-lupa (bojo da taça = lente de lupa), ADR 0005. **Sem mascote nesta versão** (ADR 0006, que suspende o "mascote uva" do briefing original e o mascote taça-lupa proposto depois); nos estados vazios aparece o próprio símbolo.
 - Evitar: estética de vinícola antiga, brasões, excesso de classicismo, visual corporativo, gradientes genéricos, aparência infantil, interfaces genéricas de IA e cara de e-commerce genérico.
 
 ## Evidence on Hand

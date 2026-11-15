@@ -1,0 +1,240 @@
+/* Gerado por tools/tokens/build.py a partir de tokens/*.json. Não edite à mão. */
+@font-face { font-family: "Playfair Display"; src: url("../../assets/fonts/playfair-display/PlayfairDisplay[wght].ttf") format("truetype"); font-weight: 400 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Playfair Display"; src: url("../../assets/fonts/playfair-display/PlayfairDisplay-Italic[wght].ttf") format("truetype"); font-weight: 400 900; font-style: italic; font-display: swap; }
+@font-face { font-family: "DM Sans"; src: url("../../assets/fonts/dm-sans/DMSans[opsz,wght].ttf") format("truetype"); font-weight: 100 1000; font-style: normal; font-display: swap; }
+@font-face { font-family: "DM Sans"; src: url("../../assets/fonts/dm-sans/DMSans-Italic[opsz,wght].ttf") format("truetype"); font-weight: 100 1000; font-style: italic; font-display: swap; }
+
+:root {
+  --color-brand-wine: #7E2236;
+  --color-brand-wine-night: #B4475B;
+  --color-brand-wine-night-ink: #D38686;
+  --color-brand-gold: #C29A5B;
+  --color-brand-noir: #16110F;
+  --color-brand-ivory: #F8F3EC;
+  --color-brand-paper: #FFFDF9;
+  --color-neutral-50: #FBF5F3;
+  --color-neutral-100: #F0EAE7;
+  --color-neutral-200: #DFD5D1;
+  --color-neutral-300: #C5BBB7;
+  --color-neutral-400: #A59C98;
+  --color-neutral-500: #877E7A;
+  --color-neutral-600: #6C6460;
+  --color-neutral-700: #564E4A;
+  --color-neutral-800: #433B38;
+  --color-neutral-900: #2E2724;
+  --color-neutral-950: #1B1412;
+  --color-wine-50: #FEF4F5;
+  --color-wine-100: #FEE4E6;
+  --color-wine-200: #FEC7CC;
+  --color-wine-300: #F6A3AD;
+  --color-wine-400: #D7828D;
+  --color-wine-500: #B9626E;
+  --color-wine-600: #9E4553;
+  --color-wine-700: #7E2236;
+  --color-wine-800: #6E162C;
+  --color-wine-900: #520019;
+  --color-wine-950: #31000C;
+  --color-gold-50: #FFF5E7;
+  --color-gold-100: #FEE8C6;
+  --color-gold-200: #F4D29F;
+  --color-gold-300: #DEB77B;
+  --color-gold-400: #C29A5B;
+  --color-gold-500: #9C7A42;
+  --color-gold-600: #7F602F;
+  --color-gold-700: #654A1E;
+  --color-gold-800: #50380F;
+  --color-gold-900: #382501;
+  --color-gold-950: #201300;
+  --color-state-success-light: #457325;
+  --color-state-success-dark: #6A9B4D;
+  --color-state-warning-light: #9E5504;
+  --color-state-warning-dark: #D0792A;
+  --color-state-danger-light: #BB3924;
+  --color-state-danger-dark: #E9644C;
+  --color-mix-wine-on-ivory-10: #ECDEDA;
+  --color-mix-wine-on-ivory-16: #E4D2CF;
+  --color-mix-wine-ink-on-noir-16: #342422;
+  --color-mix-wine-ink-on-noir-24: #432D2C;
+  --color-mix-gold-on-ivory-18: #EEE3D2;
+  --color-mix-gold-on-noir-18: #3A2F22;
+  --color-mix-success-on-ivory-8: #EAE9DC;
+  --color-mix-success-on-noir-14: #222418;
+  --color-mix-warning-on-ivory-8: #F1E6D9;
+  --color-mix-warning-on-noir-14: #302013;
+  --color-mix-danger-on-ivory-8: #F3E4DC;
+  --color-mix-danger-on-noir-14: #341D18;
+  --color-mix-wine-pressed: #6E162C;
+  --color-mix-wine-night-pressed: #983D4D;
+  --color-wine-type-tinto: #7E2236;
+  --color-wine-type-branco: #F4D29F;
+  --color-wine-type-rose: #F6A3AD;
+  --color-wine-type-espumante: #FEE8C6;
+  --color-wine-type-laranja: #DE9046;
+  --color-wine-type-fortificado: #7F602F;
+  --font-family-display: "Playfair Display", Georgia, serif;
+  --font-family-text: "DM Sans", -apple-system, sans-serif;
+  --font-family-system: "SF Pro", -apple-system, system-ui;
+  --space-0-5: 2px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --layout-margin: 16px;
+  --layout-margin-wide: 20px;
+  --layout-section-gap: 32px;
+  --layout-readable-width: 672px;
+  --size-touch-target: 44px;
+  --size-control-large: 50px;
+  --size-control-regular: 44px;
+  --size-control-small: 32px;
+  --size-row-min: 44px;
+  --size-bottle-thumb: 56px;
+  --size-icon-small: 17px;
+  --size-icon-regular: 22px;
+  --size-empty-symbol: 88px;
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+  --radius-full: 999px;
+  --border-hairline: 0.5px;
+  --border-default: 1px;
+  --border-focus: 2px;
+  --motion-duration-fast: 150ms;
+  --motion-duration-base: 250ms;
+  --motion-duration-slow: 400ms;
+  --motion-duration-fade: 200ms;
+  --motion-easing-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-easing-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Modo claro: padrão, ou forçado em qualquer contêiner com data-theme="light". */
+:root, [data-theme="light"] {
+  --color-background-base: #F8F3EC;
+  --color-background-grouped: #F1E9DF;
+  --color-surface-default: #FFFDF9;
+  --color-surface-elevated: #FFFFFF;
+  --color-surface-tinted: #ECDEDA;
+  --color-fill-primary: #16110F24;
+  --color-fill-secondary: #16110F17;
+  --color-fill-tertiary: #16110F0F;
+  --color-label-primary: #221A17;
+  --color-label-secondary: #6C6460;
+  --color-label-tertiary: #877E7A;
+  --color-label-on-action: #FFFDF9;
+  --color-separator-default: #DFD5D1;
+  --color-separator-strong: #C5BBB7;
+  --color-tint-default: #7E2236;
+  --color-action-primary: #7E2236;
+  --color-action-primary-pressed: #6E162C;
+  --color-action-secondary: #ECDEDA;
+  --color-action-secondary-pressed: #E4D2CF;
+  --color-accent-default: #C29A5B;
+  --color-accent-ink: #7F602F;
+  --color-accent-subtle: #EEE3D2;
+  --color-status-success: #457325;
+  --color-status-success-subtle: #EAE9DC;
+  --color-status-warning: #9E5504;
+  --color-status-warning-subtle: #F1E6D9;
+  --color-status-danger: #BB3924;
+  --color-status-danger-subtle: #F3E4DC;
+  --color-scrim-default: #16110F66;
+  --shadow-card: 0px 1px 2px 0px #16110F0F, 0px 8px 24px -6px #16110F14;
+  --shadow-floating: 0px 2px 6px 0px #16110F14, 0px 16px 40px -8px #16110F24;
+  color-scheme: light;
+}
+
+/* Modo escuro: preferência do sistema, ou forçado com data-theme="dark". */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+  --color-background-base: #16110F;
+  --color-background-grouped: #16110F;
+  --color-surface-default: #221A18;
+  --color-surface-elevated: #2E2421;
+  --color-surface-tinted: #342422;
+  --color-fill-primary: #F8F3EC2E;
+  --color-fill-secondary: #F8F3EC21;
+  --color-fill-tertiary: #F8F3EC17;
+  --color-label-primary: #F5EDE3;
+  --color-label-secondary: #A59C98;
+  --color-label-tertiary: #877E7A;
+  --color-label-on-action: #F8F3EC;
+  --color-separator-default: #433B38;
+  --color-separator-strong: #564E4A;
+  --color-tint-default: #D38686;
+  --color-action-primary: #B4475B;
+  --color-action-primary-pressed: #983D4D;
+  --color-action-secondary: #342422;
+  --color-action-secondary-pressed: #432D2C;
+  --color-accent-default: #DEB77B;
+  --color-accent-ink: #DEB77B;
+  --color-accent-subtle: #3A2F22;
+  --color-status-success: #6A9B4D;
+  --color-status-success-subtle: #222418;
+  --color-status-warning: #D0792A;
+  --color-status-warning-subtle: #302013;
+  --color-status-danger: #E9644C;
+  --color-status-danger-subtle: #341D18;
+  --color-scrim-default: #0000008C;
+  --shadow-card: none;
+  --shadow-floating: none;
+  color-scheme: dark;
+  }
+}
+
+[data-theme="dark"] {
+  --color-background-base: #16110F;
+  --color-background-grouped: #16110F;
+  --color-surface-default: #221A18;
+  --color-surface-elevated: #2E2421;
+  --color-surface-tinted: #342422;
+  --color-fill-primary: #F8F3EC2E;
+  --color-fill-secondary: #F8F3EC21;
+  --color-fill-tertiary: #F8F3EC17;
+  --color-label-primary: #F5EDE3;
+  --color-label-secondary: #A59C98;
+  --color-label-tertiary: #877E7A;
+  --color-label-on-action: #F8F3EC;
+  --color-separator-default: #433B38;
+  --color-separator-strong: #564E4A;
+  --color-tint-default: #D38686;
+  --color-action-primary: #B4475B;
+  --color-action-primary-pressed: #983D4D;
+  --color-action-secondary: #342422;
+  --color-action-secondary-pressed: #432D2C;
+  --color-accent-default: #DEB77B;
+  --color-accent-ink: #DEB77B;
+  --color-accent-subtle: #3A2F22;
+  --color-status-success: #6A9B4D;
+  --color-status-success-subtle: #222418;
+  --color-status-warning: #D0792A;
+  --color-status-warning-subtle: #302013;
+  --color-status-danger: #E9644C;
+  --color-status-danger-subtle: #341D18;
+  --color-scrim-default: #0000008C;
+  --shadow-card: none;
+  --shadow-floating: none;
+  color-scheme: dark;
+}
+
+.type-large-title { font-family: var(--font-family-display); font-weight: 600; font-size: 34px; line-height: 40px; letter-spacing: -0.01em; }
+.type-title-1 { font-family: var(--font-family-display); font-weight: 600; font-size: 28px; line-height: 34px; letter-spacing: -0.005em; }
+.type-title-2 { font-family: var(--font-family-display); font-weight: 600; font-size: 22px; line-height: 28px; letter-spacing: 0em; }
+.type-title-3 { font-family: var(--font-family-display); font-weight: 600; font-size: 20px; line-height: 25px; letter-spacing: 0em; }
+.type-wine-name { font-family: var(--font-family-display); font-weight: 600; font-size: 18px; line-height: 23px; letter-spacing: 0em; }
+.type-headline { font-family: var(--font-family-text); font-weight: 600; font-size: 17px; line-height: 22px; letter-spacing: 0em; }
+.type-body { font-family: var(--font-family-text); font-weight: 400; font-size: 17px; line-height: 24px; letter-spacing: 0em; }
+.type-body-strong { font-family: var(--font-family-text); font-weight: 600; font-size: 17px; line-height: 22px; letter-spacing: 0em; }
+.type-callout { font-family: var(--font-family-text); font-weight: 400; font-size: 16px; line-height: 22px; letter-spacing: 0em; }
+.type-subheadline { font-family: var(--font-family-text); font-weight: 400; font-size: 15px; line-height: 20px; letter-spacing: 0em; }
+.type-footnote { font-family: var(--font-family-text); font-weight: 400; font-size: 13px; line-height: 18px; letter-spacing: 0em; }
+.type-caption { font-family: var(--font-family-text); font-weight: 500; font-size: 12px; line-height: 16px; letter-spacing: 0.01em; }
+.type-caption-2 { font-family: var(--font-family-text); font-weight: 500; font-size: 11px; line-height: 13px; letter-spacing: 0.02em; }
+.type-price-hero { font-family: var(--font-family-text); font-weight: 600; font-size: 28px; line-height: 32px; letter-spacing: -0.01em; }

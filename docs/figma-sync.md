@@ -29,6 +29,19 @@ A organização dentro da Section `00` (`use_figma`) foi bloqueada pela cota do 
 
 Nodes da exploração de paleta: `8:5` (Direção 1), `8:471` (Direção 2), `8:937` (Direção 3), `10:2` (Recomendação), `8:2` (cabeçalho).
 
+## Design System v0.1 (2026-11-15): repositório primeiro
+
+Com a cota do MCP esgotada, o Design System foi montado só no repositório (tokens, documentação e showcase em HTML). **Nada disso está no Figma ainda.** Quando a cota voltar, levar nesta ordem, agrupando cada etapa em uma única chamada `use_figma`:
+
+| Etapa | Origem no repositório | Destino no Figma |
+|---|---|---|
+| 1. Variáveis de cor `Primitives` | `tokens/color.primitives.json` | Coleção `Primitives` |
+| 2. Variáveis `Semantic` (modos Light/Dark) | `tokens/color.light.json`, `tokens/color.dark.json` | Coleção `Semantic` |
+| 3. Espaço, raio, tamanho | `tokens/dimension.json` | Coleção `Dimension` |
+| 4. Estilos de texto (Playfair Display + DM Sans) | `tokens/typography.json` | Estilos de texto; a variável `font/family/ui` do ADR 0003 deixa de ser usada |
+| 5. Logo e símbolo (sem mascote, ADR 0006) | `assets/brand/logo/taca-lupa/` | `Brand` › `00 — Brand Identity` |
+| 6. Componentes do MVP | `docs/components/`, `docs/showcase/` | `Components & Patterns` |
+
 ## Checklist de sincronização (a cada mudança)
 1. Identificar os documentos afetados (tabela acima).
 2. Atualizar o documento e, se for o caso, o arquivo em `tokens/`.
@@ -39,5 +52,5 @@ Nodes da exploração de paleta: `8:5` (Direção 1), `8:471` (Direção 2), `8:
 ## Limitações conhecidas do ambiente
 - **Plano Starter:** 3 páginas por arquivo e sem publicação de biblioteca.
 - **Figma MCP no Starter:** a cota mensal de chamadas de ferramenta se esgotou em 2026-11-12, durante a Fase 2 (a documentação da Figma cita 20 chamadas/mês). Leituras e `use_figma` ficaram bloqueados até o reset mensal ou upgrade. Ferramentas que consomem créditos de IA (`generate_image`) não contam nesse limite.
-- **SF Pro** não renderiza no servidor do Figma: Inter é a substituta ([ADR 0003](decisions/0003-ui-font-stand-in.md)).
+- **SF Pro** não renderiza no servidor do Figma. Desde o [ADR 0004](decisions/0004-typography.md) isso só afeta os elementos desenhados pelo sistema (alertas, teclado, seletores); a UI do app usa Playfair Display e DM Sans, que renderizam. O Inter do [ADR 0003](decisions/0003-ui-font-stand-in.md) deixa de ser usado.
 - **Kit "iOS and iPadOS 27" da Apple:** já está adicionado ao arquivo, mas a importação falha até alguém aceitar o EULA da Apple no Figma. As simulações usam status bar e home indicator desenhados localmente.

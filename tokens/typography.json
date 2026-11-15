@@ -1,0 +1,103 @@
+{
+  "font": {
+    "$description": "Famílias e pesos. Playfair Display: títulos, nomes de vinhos e destaques. DM Sans: textos, menus, botões e informações. SF Pro só nos elementos desenhados pelo sistema (alertas, menus de ação, teclado, seletores). ADR 0004.",
+    "family": {
+      "display": { "$type": "fontFamily", "$value": ["Playfair Display", "Georgia", "serif"], "$description": "Arquivo: assets/fonts/playfair-display (variável, wght 400–900)." },
+      "text": { "$type": "fontFamily", "$value": ["DM Sans", "-apple-system", "sans-serif"], "$description": "Arquivo: assets/fonts/dm-sans (variável, opsz 9–40, wght 100–1000). Não tem algarismos tabulares." },
+      "system": { "$type": "fontFamily", "$value": ["SF Pro", "-apple-system", "system-ui"], "$description": "Só para elementos que o iOS desenha." }
+    },
+    "weight": {
+      "regular": { "$type": "fontWeight", "$value": 400 },
+      "medium": { "$type": "fontWeight", "$value": 500 },
+      "semibold": { "$type": "fontWeight", "$value": 600 },
+      "bold": { "$type": "fontWeight", "$value": 700 }
+    }
+  },
+  "typography": {
+    "$description": "Estilos de texto. Tamanhos em pt no tamanho padrão do Dynamic Type (Large). Cada estilo escala com o text style do iOS indicado em $extensions (UIFontMetrics / textScaler no Flutter). lineHeight em pt; letterSpacing em em.",
+    "large-title": {
+      "$type": "typography",
+      "$value": { "fontFamily": "{font.family.display}", "fontWeight": 600, "fontSize": "34pt", "lineHeight": "40pt", "letterSpacing": "-0.01em" },
+      "$description": "Título das telas de topo (Busca, Adega).",
+      "$extensions": { "com.avyn.ios": { "textStyle": "largeTitle" } }
+    },
+    "title-1": {
+      "$type": "typography",
+      "$value": { "fontFamily": "{font.family.display}", "fontWeight": 600, "fontSize": "28pt", "lineHeight": "34pt", "letterSpacing": "-0.005em" },
+      "$description": "Nome do vinho na tela de detalhe.",
+      "$extensions": { "com.avyn.ios": { "textStyle": "title1" } }
+    },
+    "title-2": {
+      "$type": "typography",
+      "$value": { "fontFamily": "{font.family.display}", "fontWeight": 600, "fontSize": "22pt", "lineHeight": "28pt", "letterSpacing": "0em" },
+      "$description": "Títulos de seção e de sheets.",
+      "$extensions": { "com.avyn.ios": { "textStyle": "title2" } }
+    },
+    "title-3": {
+      "$type": "typography",
+      "$value": { "fontFamily": "{font.family.display}", "fontWeight": 600, "fontSize": "20pt", "lineHeight": "25pt", "letterSpacing": "0em" },
+      "$description": "Subtítulos e destaques editoriais.",
+      "$extensions": { "com.avyn.ios": { "textStyle": "title3" } }
+    },
+    "wine-name": {
+      "$type": "typography",
+      "$value": { "fontFamily": "{font.family.display}", "fontWeight": 600, "fontSize": "18pt", "lineHeight": "23pt", "letterSpacing": "0em" },
+      "$description": "Nome do vinho em listas e cards. Menor tamanho permitido para a Playfair.",
+      "$extensions": { "com.avyn.ios": { "textStyle": "headline", "note": "escala como headline, mas com 18pt na base" } }
+    },
+    "headline": {
+      "$type": "typography",
+      "$value": { "fontFamily": "{font.family.text}", "fontWeight": 600, "fontSize": "17pt", "lineHeight": "22pt", "letterSpacing": "0em" },
+      "$description": "Rótulos fortes, títulos de célula, barra de navegação inline.",
+      "$extensions": { "com.avyn.ios": { "textStyle": "headline" } }
+    },
+    "body": {
+      "$type": "typography",
+      "$value": { "fontFamily": "{font.family.text}", "fontWeight": 400, "fontSize": "17pt", "lineHeight": "24pt", "letterSpacing": "0em" },
+      "$description": "Texto corrido e valores de célula.",
+      "$extensions": { "com.avyn.ios": { "textStyle": "body" } }
+    },
+    "body-strong": {
+      "$type": "typography",
+      "$value": { "fontFamily": "{font.family.text}", "fontWeight": 600, "fontSize": "17pt", "lineHeight": "22pt", "letterSpacing": "0em" },
+      "$description": "Botões e preços em destaque dentro de listas.",
+      "$extensions": { "com.avyn.ios": { "textStyle": "body" } }
+    },
+    "callout": {
+      "$type": "typography",
+      "$value": { "fontFamily": "{font.family.text}", "fontWeight": 400, "fontSize": "16pt", "lineHeight": "22pt", "letterSpacing": "0em" },
+      "$description": "Texto de apoio em cards e avisos.",
+      "$extensions": { "com.avyn.ios": { "textStyle": "callout" } }
+    },
+    "subheadline": {
+      "$type": "typography",
+      "$value": { "fontFamily": "{font.family.text}", "fontWeight": 400, "fontSize": "15pt", "lineHeight": "20pt", "letterSpacing": "0em" },
+      "$description": "Produtor, região e safra abaixo do nome do vinho.",
+      "$extensions": { "com.avyn.ios": { "textStyle": "subheadline" } }
+    },
+    "footnote": {
+      "$type": "typography",
+      "$value": { "fontFamily": "{font.family.text}", "fontWeight": 400, "fontSize": "13pt", "lineHeight": "18pt", "letterSpacing": "0em" },
+      "$description": "Notas, rodapés de seção, frete.",
+      "$extensions": { "com.avyn.ios": { "textStyle": "footnote" } }
+    },
+    "caption": {
+      "$type": "typography",
+      "$value": { "fontFamily": "{font.family.text}", "fontWeight": 500, "fontSize": "12pt", "lineHeight": "16pt", "letterSpacing": "0.01em" },
+      "$description": "Selos, rótulos de gráfico, legendas.",
+      "$extensions": { "com.avyn.ios": { "textStyle": "caption1" } }
+    },
+    "caption-2": {
+      "$type": "typography",
+      "$value": { "fontFamily": "{font.family.text}", "fontWeight": 500, "fontSize": "11pt", "lineHeight": "13pt", "letterSpacing": "0.02em" },
+      "$description": "Piso do sistema (11pt). Rótulos da tab bar.",
+      "$extensions": { "com.avyn.ios": { "textStyle": "caption2" } }
+    },
+    "price-hero": {
+      "$type": "typography",
+      "$value": { "fontFamily": "{font.family.text}", "fontWeight": 600, "fontSize": "28pt", "lineHeight": "32pt", "letterSpacing": "-0.01em" },
+      "$description": "Melhor preço na tela de detalhe. Preço é dado de confiança: sempre DM Sans, nunca Playfair.",
+      "$extensions": { "com.avyn.ios": { "textStyle": "title1" } }
+    }
+  }
+}

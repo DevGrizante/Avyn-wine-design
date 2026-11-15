@@ -2,14 +2,48 @@
 
 Formato: data · o que mudou · onde (Figma / repo).
 
-## 2026-11-15 — Produto: canal WhatsApp no MVP
+## 2026-11-15 — Sem mascote nesta versão
 
-- Pedido do responsável pelo produto (mensagem de 2026-11-14), confirmado como escopo do MVP:
-  - o app envia ofertas e promoções pelo WhatsApp (estilo Trivago);
-  - o usuário conversa com um sommelier virtual que responde dúvidas e busca o melhor preço de um vinho na internet.
-- Referência: Magie (assistente de IA que funciona inteiro pelo WhatsApp).
-- Plano: o sommelier no WhatsApp é grátis; os alertas de preço por WhatsApp seguem no Premium.
-- Atualizados: `docs/product-context.md` (nova seção "Canal WhatsApp (MVP)"), `PRODUCT.md`.
+- A pedido do usuário, o app não usa mascote; a marca fica só com o logo taça-lupa (ADR 0006, que suspende a parte do mascote do ADR 0005).
+- Novo: `assets/brand/logo/taca-lupa/simbolo-claro.svg` e `simbolo-escuro.svg` (o símbolo sem o fundo do ícone).
+- Estados vazios usam o símbolo a 88 pt (token `size.empty-symbol`, no lugar de `size.mascot-empty`); o toast usa o ícone de confirmação do sistema.
+- Showcase: seção "Marca" sem mascote, com o símbolo dentro do app; estados vazios, toast e a tela "Adega vazia" atualizados.
+- Docs atualizados: estados vazios, adega, busca, movimento, logo, `PRODUCT.md`, `CLAUDE.md`, `README.md`, `figma-sync.md`. O mascote (`docs/brand/mascot.md`, `assets/brand/mascot/taca-lupa/`) fica como histórico.
+
+## 2026-11-15 — Design System v0.1 (repositório)
+
+- Decisões do usuário:
+  - paleta Warm & Friendly Premium aprovada (ADR 0001 → Aceito);
+  - tipografia Playfair Display + DM Sans, com SF Pro só nos elementos do sistema (ADR 0004, que substitui o ADR 0003);
+  - logo taça-lupa (do PR #1) e um mascote derivado dele (ADR 0005);
+  - montar tudo no repositório, sem Figma, por causa da cota do MCP.
+- Cor:
+  - primária do escuro resolvida: ação em `#B4475B` (vinho do ícone escuro), texto interativo em `#D38686`;
+  - cores de estado (sucesso, atenção, erro) afastadas do vinho e do dourado;
+  - 88 pares de contraste validados por script, nos dois modos.
+- Mascote taça-lupa: a lente vira o olho e o vinho a íris, em 5 poses (claro e escuro). A versão com dois olhos foi descartada por ler como emoji.
+- Novos:
+  - `tokens/` (W3C DTCG: cor primitiva, semântica clara e escura, tipografia, medidas, efeitos);
+  - `tools/tokens/` (geração, contraste, CSS) e `tools/brand/mascot_taca_lupa.py`;
+  - `docs/foundations/`, `docs/components/`, `docs/patterns/`, `docs/brand/logo.md`, `docs/brand/mascot.md`;
+  - `docs/showcase/` (showcase HTML com fundamentos, componentes e 4 telas de referência);
+  - `assets/fonts/` (OFL) e `assets/brand/mascot/taca-lupa/`.
+- Atualizados:
+  - `README.md` (convertido de UTF-16 para UTF-8);
+  - `CLAUDE.md`, `PRODUCT.md` (mascote passa a ser a taça-lupa);
+  - `docs/figma-sync.md` (ordem para levar o v0.1 ao Figma), `docs/brand/identity-r3.md` (checkpoint fechado).
+
+## 2026-11-15 — Produto: escopo do MVP revisado e canal WhatsApp
+
+- Escopo do MVP revisado, com foco em busca e adega:
+  1. busca de vinhos (catálogo e comparação de preços dentro da busca);
+  2. adega virtual (antes estava na visão posterior);
+  3. notificações e avisos por WhatsApp (tipos a definir).
+- WhatsApp: pedido do responsável pelo produto (mensagem de 2026-11-14).
+  - No MVP, só avisos do app para o usuário.
+  - O sommelier conversacional (responder dúvidas e buscar o melhor preço de um vinho) fica para depois, por ser avançado demais para o MVP. Será grátis; referência: Magie.
+  - Os alertas de preço por WhatsApp seguem no Premium.
+- Atualizados: `docs/product-context.md` (nova seção "Canal WhatsApp"), `PRODUCT.md`.
 - Novo: `CLAUDE.md`, guia do repositório para o Claude Code (produto, escopo, regras de trabalho, identidade, Figma).
 
 ## 2026-11-12 — Identidade rodada 3 (nível "showcase")

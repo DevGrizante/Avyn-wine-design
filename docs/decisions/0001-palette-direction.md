@@ -1,6 +1,7 @@
 # ADR 0001 — Direção de paleta
 
-- **Status:** Proposto (aguardando aprovação no gate G1)
+- **Status:** Aceito (aprovado pelo usuário em 2026-11-15)
+- **Implementação:** tokens em [`tokens/`](../../tokens/), regras em [`docs/foundations/color.md`](../foundations/color.md). A primária do escuro foi resolvida assim: ação em `#B4475B` (o vinho do ícone escuro) e texto interativo em `#D38686` (menos rosado que o 400 da escala).
 - **Data:** 2026-11-12
 - **Figma:** `Brand` › `01 — Color Foundations` (node `7:5`)
 - **Detalhes:** [docs/color/palette-exploration.md](../color/palette-exploration.md)

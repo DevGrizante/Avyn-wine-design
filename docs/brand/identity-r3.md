@@ -1,6 +1,6 @@
 # Identidade — rodada 3 (logo-design skill, nível "showcase")
 
-> **Status (2026-11-12):** checkpoint, aguardando a escolha de um logo e de um mascote. O kit completo só é montado depois da escolha.
+> **Status (2026-11-15):** checkpoint fechado. O usuário escolheu o ícone taça-lupa (PR #1) e pediu um mascote derivado dele; nenhum candidato desta rodada foi adotado. Ver [ADR 0005](../decisions/0005-logo-and-mascot.md), [logo.md](logo.md) e [mascot.md](mascot.md). O que segue é histórico.
 > **Ver primeiro:** [`app-icons-grid.png`](../../assets/brand/logo/exploration/r3/app-icons-grid.png) (todas as ideias como ícone de app, em cor) · [`logos-r3.png`](../../assets/brand/logo/exploration/r3/logos-r3.png) · [`mascotes-r3.png`](../../assets/brand/mascot/exploration/r3/mascotes-r3.png) · prévia em mockups no [`board/`](../../assets/brand/logo/exploration/r3/board/) (abre também como `board.html`): Decanter-A em `slide-03`/`04`, a-giro em `05`/`06`, Lupa-taça em `07`/`08`, comparação e recomendação em `09`/`10`.
 > **Gerador:** [`tools/brand/identity_r3.py`](../../tools/brand/identity_r3.py) (uma geometria → SVG preto, colorido e tile de app; grava em `tools/brand/out-r3/`).
 

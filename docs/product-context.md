@@ -8,26 +8,32 @@ Ecossistema digital do vinho que reúne num só app o que hoje está espalhado p
 **Posicionamento (provisório, pendente de confirmação):** *"O aplicativo que transforma qualquer pessoa em um especialista em vinho."* O diferencial é uma IA que reconhece o vinho por foto e responde produtor, região, janela de consumo, harmonização e ofertas mais baratas.
 
 ## Escopo de lançamento (confirmado)
-1. **Catálogo de vinhos.**
-2. **Busca e comparação de preços ("Buscapé" de vinhos) e busca geral.**
-3. **Canal WhatsApp:** ofertas enviadas ao usuário e sommelier virtual que responde pelo WhatsApp (detalhes abaixo).
+Revisado em 2026-11-15: o foco do MVP é busca e adega.
 
-Visão posterior: adega virtual, análise sensorial guiada, harmonização, aprendizado, compra e venda, comunidade/confrarias, enoturismo, IA sommelier.
+1. **Busca de vinhos:** catálogo e comparação de preços ("Buscapé" de vinhos) dentro da busca.
+2. **Adega virtual.**
+3. **Notificações e avisos por WhatsApp** (tipos a definir; detalhes abaixo).
 
-## Canal WhatsApp (MVP)
-Pedido do responsável pelo produto em mensagem de 2026-11-14; confirmado como parte do MVP. O WhatsApp funciona nos dois sentidos:
+Visão posterior: análise sensorial guiada, harmonização, aprendizado, compra e venda, comunidade/confrarias, enoturismo, IA sommelier (no app e conversando pelo WhatsApp).
 
-- **App → usuário (ativo):** ofertas e promoções de vinho e de tudo relacionado, no estilo Trivago.
-- **Usuário → app (receptivo):** um sommelier virtual que responde dúvidas por mensagem. Exemplos:
-  - "Qual vinho tomar com pizza de calabresa?"
-  - "Por quanto tempo preciso decantar um Brunello 2020?"
-- **Pesquisa sob demanda:** o usuário pede informações sobre um vinho específico e o sommelier busca o melhor preço na internet.
+## Canal WhatsApp
+Pedido do responsável pelo produto em mensagem de 2026-11-14.
+
+### No MVP: só notificações e avisos
+O app envia mensagens ao usuário; o usuário não conversa com o app. Os tipos de aviso ainda estão **a definir**. As ofertas e promoções no estilo Trivago, do pedido original, são candidatas.
+
+### Visão posterior: sommelier conversacional
+Fica fora do MVP por ser avançado demais para a primeira versão. O usuário mandaria mensagens e o app responderia:
+- dúvidas, por exemplo "Qual vinho tomar com pizza de calabresa?" ou "Por quanto tempo preciso decantar um Brunello 2020?";
+- pesquisa sob demanda sobre um vinho específico, com a busca do melhor preço na internet.
 
 **Referência:** Magie, assistente de IA brasileiro que funciona inteiro pelo WhatsApp: o usuário conversa e o assistente executa, sem precisar abrir um app.
 
 **Plano: grátis** (decisão de 2026-11-15). Os alertas de preço por WhatsApp continuam no Premium.
 
-**Implicações para o design (a planejar):** avatar e nome do perfil no WhatsApp, tom de voz conversacional do sommelier e modelos de mensagem de oferta. Precisam funcionar dentro da interface do WhatsApp, sem os componentes do app.
+### Implicações para o design (a planejar)
+- **MVP:** avatar e nome do perfil no WhatsApp e modelos de mensagem de aviso. Precisam funcionar dentro da interface do WhatsApp, sem os componentes do app.
+- **Depois:** tom de voz conversacional do sommelier.
 
 ## Públicos
 | Público | Quem | Dores |
@@ -41,8 +47,9 @@ Pedido do responsável pelo produto em mensagem de 2026-11-14; confirmado como p
 Brasil · PT-BR · R$. Plataforma de design: **iOS primeiro** (HIG); o app será implementado em Flutter numa etapa futura.
 
 ## Monetização (valores a definir)
-- **Grátis:** cadastro, busca de preços limitada, adega virtual, análise sensorial, comunidade, sommelier no WhatsApp.
+- **Grátis:** cadastro, busca de preços limitada, adega virtual, análise sensorial, comunidade, sommelier no WhatsApp (pós-MVP).
 - **Premium:** IA Sommelier, alertas de preço (app e WhatsApp), análise avançada da adega, busca global, classificados entre particulares.
+
 ## Premissas desta etapa
 - Não há fotos, parceiros, lojas ou dados reais. Todo conteúdo nas simulações é **fictício** (vinhos, lojas, preços).
 - A estrutura de abas mostrada nas simulações (Catálogo, Buscar, Adega, Perfil) é **placeholder**, não uma decisão de navegação.
