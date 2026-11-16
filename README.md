@@ -3,7 +3,7 @@
 Identidade visual e Design System iOS do **AVYN**, um ecossistema digital do vinho. O MVP tem foco em busca de vinhos (catálogo e comparação de preços), adega virtual e avisos por WhatsApp.
 
 ## Objetivo deste repositório
-Fonte oficial de **documentação, decisões e tokens** da marca e do Design System. O Figma é o ambiente visual; tudo o que é decidido lá é registrado aqui. Esta etapa **não** inclui código do app (Flutter), backend nem telas completas do produto.
+Fonte oficial de **documentação, decisões e tokens** da marca e do Design System. O Figma é o ambiente visual; tudo o que é decidido lá é registrado aqui. Esta etapa **não** inclui código do app (Flutter) nem backend; as telas existem como protótipo navegável em HTML.
 
 ## Status atual
 
@@ -25,6 +25,15 @@ python -m http.server 8000
 
 (Servir por HTTP garante que as fontes carreguem; abrir o arquivo direto pode bloquear as fontes em alguns navegadores.)
 
+## Ver o protótipo navegável
+Abertura, entrar/criar conta, busca com comparação de preços, escanear rótulo, ofertas por loja e adega em 3D, com o mesmo servidor acima:
+
+```
+http://localhost:8000/docs/prototype/
+```
+
+Detalhes em [docs/prototype/README.md](docs/prototype/README.md).
+
 ## Estrutura
 
 ```
@@ -38,6 +47,7 @@ docs/
   components/              componentes do MVP
   patterns/                padrões iOS e fluxos do MVP
   showcase/                showcase em HTML (gerado a partir dos tokens)
+  prototype/               protótipo navegável das telas do MVP
   brand/                   logo e explorações de identidade
   color/                   exploração de paleta
   decisions/               registro de decisões (ADR)

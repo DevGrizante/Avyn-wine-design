@@ -2,6 +2,25 @@
 
 Formato: data · o que mudou · onde (Figma / repo).
 
+## 2026-11-15 — Protótipo navegável
+
+- Pedido do usuário: menos "cara de IA" e um protótipo navegável com abertura, entrar/criar conta, escanear o vinho, ofertas por loja e adega em 3D.
+- Referências de design revisadas: Spotify (navegação e descoberta), Notion (organização, perfil e lista da adega), Duolingo (só o onboarding), Vivino e Wine-Searcher (escaneamento e preços), InVintory (rack 3D). No protótipo, Vivino, Wine-Searcher e InVintory já estão aplicados; Spotify, Notion e Duolingo ainda não.
+- Login: só com Google ou conta própria do app (e-mail e senha), sem Apple. Registrado em `docs/product-context.md`, com a regra 4.8 da App Store a verificar.
+- Novo `docs/prototype/` (HTML, conteúdo fictício):
+  - abertura com o símbolo; boas-vindas com Google ou conta do app; criar conta com opção de avisos no WhatsApp; entrar;
+  - buscar com atalho de câmera, preços que caíram e resultados com filtros; página do vinho com lojas por preço, janela de consumo e "Adicionar à adega";
+  - escanear rótulo (câmera simulada, modo código de barras) e adicionar à adega escolhendo o lugar no rack;
+  - adicionar sem escanear: botão Digitar na câmera e "Não é este vinho" quando o scanner erra; busca no catálogo pelo nome ou cadastro manual (nome, produtor, safra, região, tipo), que entra na adega sem preços nem janela de consumo;
+  - ofertas por loja e por vinho, com página da loja;
+  - página da garrafa na adega (não a de compra): quantidade, lugar no rack, desde quando, preço pago, menor preço hoje, anotação e "Abrir uma garrafa";
+  - entrar e criar conta refeitas: Google também em Entrar (Criar conta é só por e-mail), campos com rótulo em cima e erro por campo, link para trocar de tela, avisos no WhatsApp desligados por padrão e recuperação de senha por e-mail;
+  - adega em 3D (three.js): rack de madeira escura, girar, tocar para puxar a garrafa, filtros por estado, alternância para lista;
+  - perfil com tipos de aviso no WhatsApp.
+- Garrafas desenhadas em SVG (`bottles.js`) no lugar de fotos, cada vinho com formato, vidro, cápsula e rótulo próprios.
+- A paleta e as fontes não mudaram (uma troca do fundo creme por branco foi testada e desfeita a pedido do usuário).
+- Abas provisórias no protótipo: Buscar, Ofertas, Adega e Perfil, com botão de escanear separado.
+
 ## 2026-11-15 — Sem mascote nesta versão
 
 - A pedido do usuário, o app não usa mascote; a marca fica só com o logo taça-lupa (ADR 0006, que suspende a parte do mascote do ADR 0005).

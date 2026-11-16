@@ -16,6 +16,11 @@ Revisado em 2026-11-15: o foco do MVP é busca e adega.
 
 Visão posterior: análise sensorial guiada, harmonização, aprendizado, compra e venda, comunidade/confrarias, enoturismo, IA sommelier (no app e conversando pelo WhatsApp).
 
+## Conta e login
+Decisão de 2026-11-15: entrar **só com Google ou com conta própria do app** (e-mail e senha). Sem login com a Apple.
+
+**A verificar antes da publicação:** a regra 4.8 das diretrizes da App Store pede que apps com login de terceiros (como o Google) ofereçam também uma opção equivalente com foco em privacidade. Conta própria do app pode não bastar; confirmar a regra vigente antes de enviar o app para revisão.
+
 ## Canal WhatsApp
 Pedido do responsável pelo produto em mensagem de 2026-11-14.
 
@@ -52,4 +57,4 @@ Brasil · PT-BR · R$. Plataforma de design: **iOS primeiro** (HIG); o app será
 
 ## Premissas desta etapa
 - Não há fotos, parceiros, lojas ou dados reais. Todo conteúdo nas simulações é **fictício** (vinhos, lojas, preços).
-- A estrutura de abas mostrada nas simulações (Catálogo, Buscar, Adega, Perfil) é **placeholder**, não uma decisão de navegação.
+- A estrutura de abas mostrada nas simulações (no protótipo: Buscar, Ofertas, Adega, Perfil) é **placeholder**, não uma decisão de navegação.

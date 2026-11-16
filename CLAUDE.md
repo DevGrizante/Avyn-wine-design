@@ -11,13 +11,16 @@ Ecossistema digital do vinho que reúne num só app o que hoje está espalhado: 
 - **Visão posterior:** análise sensorial guiada, harmonização, aprendizado, compra e venda, comunidade/confrarias, enoturismo, IA Sommelier (no app e pelo WhatsApp).
 - **Públicos:** entusiastas 25–65 (primário; insegurança na compra), colecionadores (controle da adega, momento ideal de consumo), compradores em geral (preços muito variados), vinícolas e importadoras (pouca conexão com o consumidor).
 - **Monetização (valores a definir):** grátis = busca de preços limitada, adega, análise sensorial, comunidade, sommelier no WhatsApp (pós-MVP); premium = IA Sommelier, alertas de preço (app e WhatsApp), análise avançada da adega, busca global, classificados.
+- **Login:** só com Google ou com conta própria do app (e-mail e senha). Sem login com a Apple.
 - **Mercado:** Brasil · PT-BR · R$. Design **iOS primeiro** (HIG); app em Flutter numa etapa futura.
 - Fonte original: `Projeto de aplicativo de vinhos.docx` (fora do repositório).
 
 ## Escopo deste repositório
-Fonte oficial de **documentação, decisões e tokens** da marca e do Design System iOS. O Figma é o ambiente visual; tudo decidido lá é registrado aqui. **Sem** código Flutter, backend ou telas completas do produto nesta etapa.
+Fonte oficial de **documentação, decisões e tokens** da marca e do Design System iOS. O Figma é o ambiente visual; tudo decidido lá é registrado aqui. **Sem** código Flutter ou backend nesta etapa. As telas existem só como protótipo navegável em HTML (`docs/prototype/`), para validar fluxos.
 
-Todo conteúdo de simulação (vinhos, lojas, preços) é **fictício** e marcado como tal. As abas mostradas em simulações (Catálogo, Buscar, Adega, Perfil) são placeholder, não decisão de navegação.
+Todo conteúdo de simulação (vinhos, lojas, preços) é **fictício** e marcado como tal. As abas mostradas em simulações (no protótipo: Buscar, Ofertas, Adega, Perfil + botão de escanear) são placeholder, não decisão de navegação.
+
+**Referências de design** (pedido do usuário para fugir da "cara de IA", revisadas em 2026-11-15): Spotify (navegação e descoberta), Notion (organização, perfil e lista da adega), Duolingo (só o onboarding), Vivino e Wine-Searcher (escaneamento e preços), InVintory (rack 3D). A paleta e as fontes **não mudam**: o creme fica.
 
 ## Regras de trabalho
 - **Nunca** fazer commit ou push sem pedir.
@@ -32,7 +35,7 @@ Todo conteúdo de simulação (vinhos, lojas, preços) é **fictício** e marcad
 - **Cor:** Warm & Friendly Premium (ADR 0001). Um tint só (vinho). Dourado não é texto no claro (`accent.ink` para texto). No escuro, ação `#B4475B` e texto interativo `#D38686`.
 - **Tipografia:** Playfair Display (títulos, nomes de vinhos, destaques; mínimo 18 pt) + DM Sans (textos, menus, botões, informações, preços). SF Pro só no que o iOS desenha (ADR 0004). Dynamic Type obrigatório.
 - **Controles são os do iOS.** A marca entra por cor, tipografia, o símbolo taça-lupa e um componente próprio: a janela de consumo.
-- Docs: `docs/foundations/`, `docs/components/`, `docs/patterns/`. Showcase: `docs/showcase/index.html` (servir com `python -m http.server`).
+- Docs: `docs/foundations/`, `docs/components/`, `docs/patterns/`. Showcase: `docs/showcase/index.html`. Protótipo: `docs/prototype/index.html` (servir os dois com `python -m http.server`).
 
 ## Identidade visual
 - Cores restritas às famílias **dourado/mel, preto, vinho/granada e branco/creme**. Nada infantil.
@@ -59,6 +62,7 @@ docs/
   components/         componentes do MVP
   patterns/           padrões iOS e fluxos
   showcase/           showcase HTML (tokens.css gerado)
+  prototype/          protótipo navegável (splash, login, busca, escanear, ofertas, adega 3D)
   figma-sync.md       mapa Figma ↔ docs, checklist de sincronização, limitações
   brand/              logo e explorações (mascote suspenso)
   color/              exploração de paleta

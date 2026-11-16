@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AVYN Protótipo</title>
+<meta name="description" content="Protótipo navegável do app AVYN: abertura, entrar e criar conta, busca, escanear rótulo, ofertas por loja e adega em 3D. Conteúdo fictício.">
+<link rel="icon" href="../../assets/brand/logo/taca-lupa/icone-claro-32.png">
+<link rel="stylesheet" href="../showcase/tokens.css">
+<link rel="stylesheet" href="../showcase/components.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body class="av">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3.5 12.2V4.5a1 1 0 0 1 1-1h7.7a1 1 0 0 1 .7.3l8.3 8.3a1 1 0 0 1 0 1.4l-7.7 7.7a1 1 0 0 1-1.4 0l-8.3-8.3a1 1 0 0 1-.3-.7z"/><circle cx="8" cy="8" r="1.4"/></symbol>
+  <symbol id="i-rack" viewBox="0 0 24 24"><rect x="3" y="3.5" width="18" height="17" rx="2"/><circle cx="8" cy="9" r="2"/><circle cx="16" cy="9" r="2"/><circle cx="8" cy="15.5" r="2"/><circle cx="16" cy="15.5" r="2"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-3.8 4.2-5.5 7.5-5.5s6.3 1.7 7.5 5.5"/></symbol>
+  <symbol id="i-scan" viewBox="0 0 24 24"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><path d="M11 7h2v2.2c0 .6.3 1 .7 1.4.8.7 1.3 1.6 1.3 2.8V17h-6v-3.6c0-1.2.5-2.1 1.3-2.8.4-.4.7-.8.7-1.4z"/></symbol>
+  <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="m14.5 5-7 7 7 7"/></symbol>
+  <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="m9.5 5 7 7-7 7"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-flash" viewBox="0 0 24 24"><path d="M13 3 5.5 13.5H12L11 21l7.5-10.5H12z"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2.5"/><circle cx="9" cy="10" r="1.6"/><path d="m4 17 5-4.5 4 3.5 2.5-2 4.5 3.5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 1 1 12 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 15V3.5M8 7l4-4 4 4"/><path d="M6 11H5.5A1.5 1.5 0 0 0 4 12.5v6A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5v-6a1.5 1.5 0 0 0-1.5-1.5H18"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.4-7.5-10A4.3 4.3 0 0 1 12 7.5 4.3 4.3 0 0 1 19.5 10c0 5.6-7.5 10-7.5 10z"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s6.5-6 6.5-11a6.5 6.5 0 1 0-13 0c0 5 6.5 11 6.5 11z"/><circle cx="12" cy="10" r="2.3"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 6.5h11v9H3zM14 9.5h4l3 3.5v2.5h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></symbol>
+  <symbol id="i-barcode" viewBox="0 0 24 24"><path d="M4 6v12M7 6v12M10.5 6v12M13 6v12M16.5 6v12M20 6v12"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 7h12M8 12h12M8 17h12"/><circle cx="4" cy="7" r=".8"/><circle cx="4" cy="12" r=".8"/><circle cx="4" cy="17" r=".8"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19.5 8.5a2.1 2.1 0 0 0-3-3L5 17z"/><path d="m14.5 7.5 3 3"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H18v3"/><rect x="4" y="8" width="16.5" height="11" rx="2.5"/><circle cx="16" cy="13.5" r="1.3"/></symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M4 20l1.2-4A8 8 0 1 1 8 18.8z"/><path d="M9 8.5c0 3 3 6 6 6l1-1.5-2-1-1 1c-1-.4-2.1-1.5-2.5-2.5l1-1-1-2z"/></symbol>
+</svg>
+
+<div class="stage">
+  <aside class="guide">
+    <div class="brand"><img src="../../assets/brand/logo/taca-lupa/icone-claro.svg" alt=""><div><b>AVYN</b><span>Protótipo navegável</span></div></div>
+    <p>Toque nas telas como no celular. Os atalhos abaixo levam direto a cada fluxo. Vinhos, lojas e preços são fictícios.</p>
+    <nav aria-label="Ir para">
+      <button type="button" data-jump="splash">Abertura<small>Começa do zero</small></button>
+      <button type="button" data-jump="welcome">Entrar ou criar conta</button>
+      <button type="button" data-jump="buscar">Buscar e comparar preços</button>
+      <button type="button" data-jump="scan">Escanear um rótulo<small>E guardar no rack</small></button>
+      <button type="button" data-jump="ofertas">Ofertas por loja</button>
+      <button type="button" data-jump="adega">Adega em 3D</button>
+      <button type="button" data-jump="perfil">Perfil e avisos no WhatsApp</button>
+    </nav>
+    <div>
+      <div class="seg" role="group" aria-label="Aparência">
+        <button type="button" data-appearance="system" aria-pressed="true">Sistema</button>
+        <button type="button" data-appearance="light" aria-pressed="false">Claro</button>
+        <button type="button" data-appearance="dark" aria-pressed="false">Escuro</button>
+      </div>
+    </div>
+    <p class="fine">A barra de abas é provisória. O Design System completo está no <a href="../showcase/">showcase</a>.</p>
+  </aside>
+
+  <div class="device">
+    <div class="app" id="app">
+      <div class="statusbar"><span>9:41</span><span class="island"></span><svg viewBox="0 0 70 13"><rect x="0" y="7" width="3" height="6" rx="1"/><rect x="5" y="5" width="3" height="8" rx="1"/><rect x="10" y="3" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="13" rx="1"/><rect x="42" y="1" width="24" height="11" rx="3.5" fill="none" stroke="currentColor" stroke-width="1"/><rect x="44" y="3" width="17" height="7" rx="2"/></svg></div>
+
+      <div class="layer" id="tabs">
+        <div class="tabview" data-tab="buscar"></div>
+        <div class="tabview" data-tab="ofertas" hidden></div>
+        <div class="tabview" data-tab="adega" hidden></div>
+        <div class="tabview" data-tab="perfil" hidden></div>
+      </div>
+
+      <nav class="tabbar" id="tabbar" aria-label="Abas (provisório)">
+        <div class="tabs">
+          <button type="button" data-tab-go="buscar" aria-current="page"><svg class="icon"><use href="#i-search"/></svg>Buscar</button>
+          <button type="button" data-tab-go="ofertas"><svg class="icon"><use href="#i-tag"/></svg>Ofertas</button>
+          <button type="button" data-tab-go="adega"><svg class="icon"><use href="#i-rack"/></svg>Adega</button>
+          <button type="button" data-tab-go="perfil"><svg class="icon"><use href="#i-user"/></svg>Perfil</button>
+        </div>
+        <button type="button" class="scanbtn" data-action="scan" aria-label="Escanear rótulo"><svg class="icon"><use href="#i-scan"/></svg></button>
+      </nav>
+
+      <div class="layer" id="auth"></div>
+      <section class="scanner is-hidden" id="scan" aria-label="Escanear rótulo" data-theme="dark"></section>
+      <div class="scrim" id="scrim"></div>
+      <div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
+      <div class="toast" id="toast" role="status"></div>
+      <div class="splash" id="splash" hidden></div>
+      <span class="homebar"></span>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="data.js"></script>
+<script src="bottles.js"></script>
+<script src="cellar3d.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
