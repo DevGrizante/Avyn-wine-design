@@ -15,8 +15,17 @@ Fonte oficial de **documentação, decisões e tokens** da marca e do Design Sys
 | 4. Design System (tokens, componentes, padrões iOS) | ✅ v0.1 montado no repositório |
 | 5. Validação e Figma | ⏳ contraste validado por script; falta revisão visual do usuário e levar ao Figma |
 
+## Online (GitHub Pages)
+O repositório é publicado no GitHub Pages a partir da raiz da branch `main`:
+
+- Protótipo navegável: <https://devgrizante.github.io/Avyn-wine-design/docs/prototype/>
+- Showcase do Design System: <https://devgrizante.github.io/Avyn-wine-design/docs/showcase/>
+- Documentação (fundamentos, componentes, padrões): <https://devgrizante.github.io/Avyn-wine-design/docs/foundations/>, <https://devgrizante.github.io/Avyn-wine-design/docs/components/>, <https://devgrizante.github.io/Avyn-wine-design/docs/patterns/>
+
+Cada push na `main` atualiza o site em um ou dois minutos. **Tudo o que está no repositório fica público no site**, inclusive `PRODUCT.md`, `docs/product-context.md` e as ADRs. Antes de subir algo que não deva ser público, ver a seção "GitHub Pages" em `CLAUDE.md`.
+
 ## Ver o Design System
-O showcase mostra fundamentos, componentes e telas de referência nos modos claro e escuro:
+O showcase mostra fundamentos, componentes e telas de referência nos modos claro e escuro. Online no link acima ou localmente:
 
 ```sh
 python -m http.server 8000
@@ -26,7 +35,7 @@ python -m http.server 8000
 (Servir por HTTP garante que as fontes carreguem; abrir o arquivo direto pode bloquear as fontes em alguns navegadores.)
 
 ## Ver o protótipo navegável
-Abertura, entrar/criar conta, busca com comparação de preços, escanear rótulo, ofertas por loja e adega em 3D, com o mesmo servidor acima:
+Abertura, entrar/criar conta, busca com comparação de preços, escanear rótulo, ofertas por loja e adega em 3D. Online em <https://devgrizante.github.io/Avyn-wine-design/docs/prototype/> ou, com o mesmo servidor acima:
 
 ```
 http://localhost:8000/docs/prototype/

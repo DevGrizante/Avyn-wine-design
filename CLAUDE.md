@@ -35,7 +35,15 @@ Todo conteúdo de simulação (vinhos, lojas, preços) é **fictício** e marcad
 - **Cor:** Warm & Friendly Premium (ADR 0001). Um tint só (vinho). Dourado não é texto no claro (`accent.ink` para texto). No escuro, ação `#B4475B` e texto interativo `#D38686`.
 - **Tipografia:** Playfair Display (títulos, nomes de vinhos, destaques; mínimo 18 pt) + DM Sans (textos, menus, botões, informações, preços). SF Pro só no que o iOS desenha (ADR 0004). Dynamic Type obrigatório.
 - **Controles são os do iOS.** A marca entra por cor, tipografia, o símbolo taça-lupa e um componente próprio: a janela de consumo.
-- Docs: `docs/foundations/`, `docs/components/`, `docs/patterns/`. Showcase: `docs/showcase/index.html`. Protótipo: `docs/prototype/index.html` (servir os dois com `python -m http.server`).
+- Docs: `docs/foundations/`, `docs/components/`, `docs/patterns/`. Showcase: `docs/showcase/index.html`. Protótipo: `docs/prototype/index.html` (servir os dois com `python -m http.server`). Online: https://devgrizante.github.io/Avyn-wine-design/docs/prototype/ e https://devgrizante.github.io/Avyn-wine-design/docs/showcase/.
+
+## GitHub Pages
+Publicado desde 2026-11-15 em https://devgrizante.github.io/Avyn-wine-design/, a partir da **raiz** da branch `main` (Deploy from a branch, com Jekyll). Ativado pelo dono do repositório (DevGrizante); configurar o Pages exige admin, mas qualquer push na `main` atualiza o site.
+- **Tudo no repositório fica público no site** (os `.md` viram páginas, por exemplo `PRODUCT.html`). Não subir nada confidencial: telefones, dados de pessoas, valores do Premium antes de decididos, o documento de visão.
+- Não mudar a fonte para `/docs`: o protótipo e o showcase carregam logo e fontes de `assets/`, fora de `docs/`.
+- Não adicionar `.nojekyll`: é o Jekyll que transforma os `README.md` das pastas em páginas (os links do rodapé do showcase dependem disso). Não escrever chaves duplas nem chave seguida de porcento (sintaxe Liquid) em nenhum arquivo: o Jekyll interpreta e a publicação falha.
+- Links e caminhos diferenciam maiúsculas de minúsculas no site (no Windows não). Conferir antes de subir.
+- Domínio próprio (`CNAME`) não está configurado.
 
 ## Identidade visual
 - Cores restritas às famílias **dourado/mel, preto, vinho/granada e branco/creme**. Nada infantil.

@@ -2,6 +2,12 @@
 
 Formato: data · o que mudou · onde (Figma / repo).
 
+## 2026-11-15 — Publicação no GitHub Pages
+
+- Repositório publicado no GitHub Pages a partir da raiz da `main`: protótipo em https://devgrizante.github.io/Avyn-wine-design/docs/prototype/ e showcase em https://devgrizante.github.io/Avyn-wine-design/docs/showcase/. Conferido online: telas, adega em 3D, fontes e documentação carregam sem erro.
+- Um `CNAME` foi criado e removido em seguida no GitHub; não há domínio próprio.
+- `README.md`, `CLAUDE.md` e `docs/prototype/README.md` ganharam os links e as regras do site (tudo no repositório fica público; manter a fonte na raiz e o Jekyll ligado).
+
 ## 2026-11-15 — Protótipo navegável
 
 - Pedido do usuário: menos "cara de IA" e um protótipo navegável com abertura, entrar/criar conta, escanear o vinho, ofertas por loja e adega em 3D.

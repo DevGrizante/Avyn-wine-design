@@ -4,6 +4,10 @@ Protótipo em HTML para validar os fluxos do MVP antes do app em Flutter. Não �
 
 ## Como abrir
 
+Online: <https://devgrizante.github.io/Avyn-wine-design/docs/prototype/> (GitHub Pages, atualizado a cada push na `main`).
+
+Localmente, na raiz do repositório:
+
 ```sh
 python -m http.server 8000
 # abra http://localhost:8000/docs/prototype/
