@@ -2,6 +2,15 @@
 
 Formato: data · o que mudou · onde (Figma / repo).
 
+## 2026-11-17 — Protótipo: adega 3D nova e revisão de design
+
+- Adega em 3D refeita (`docs/prototype/cellar3d.js`): garrafas de vidro com o vinho dentro e rótulo impresso, rack de madeira com filetes de latão e luz em cada prateleira. A tela da adega fica sempre escura, nos dois modos.
+- Garrafa em destaque: ao tocar, sai do nicho, fica de pé e vem para perto, com o rack apagado atrás. Arrastar gira a garrafa; o vidro fica quase invisível e o vinho balança.
+- Topo das telas: a faixa que cobria o conteúdo ao rolar virou um degradê atrás do relógio.
+- Movimento: uma escala de durações, resposta ao toque, entrada das listas em sequência e preço que rola até o valor.
+- Página Vinho: garrafa sob foco de luz, nome em tipografia grande, preço em destaque com a economia em reais, menos blocos.
+- Textos revisados nas telas Buscar, Vinho e Adega.
+
 ## 2026-11-15 — Publicação no GitHub Pages
 
 - Repositório publicado no GitHub Pages a partir da raiz da `main`: protótipo em https://devgrizante.github.io/Avyn-wine-design/docs/prototype/ e showcase em https://devgrizante.github.io/Avyn-wine-design/docs/showcase/. Conferido online: telas, adega em 3D, fontes e documentação carregam sem erro.

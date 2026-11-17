@@ -14,6 +14,15 @@
   const one = (n) => n.toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
   const icon = (id, cls = "") => `<svg class="icon ${cls}" aria-hidden="true"><use href="#i-${id}"/></svg>`;
   const bottle = (w, cls = "") => `<div class="bottle-img ${cls}">${B(w)}</div>`;
+  // Preço que "rola" até o valor final (efeito de contador). Respeita quem pediu menos movimento.
+  function rollPrices(root) {
+    root.querySelectorAll("[data-roll]").forEach(el => {
+      const end = +el.dataset.roll, from = end * 0.82, t0 = performance.now(), dur = 900;
+      if (reduce) { el.textContent = brl(end); return; }
+      const step = (now) => { const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 4); el.textContent = brl(from + (end - from) * e); if (k < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    });
+  }
   const origin = (w) => [w.region, w.country].filter(Boolean).join(", ") || "Região não informada";
   const pct = (o) => Math.round((1 - o.price / o.old) * 100);
   const bestDeal = (w) => w.offers.filter(o => o.old).sort((a, b) => pct(b) - pct(a))[0];
@@ -146,16 +155,16 @@
       html: `<h1 class="large-title">Buscar</h1>
         <div class="search-wrap"><label class="av-search">${icon("search")}<input type="search" data-search placeholder="Vinho, uva, produtor ou região" enterkeyhint="search"><button type="button" class="scan" data-action="scan" aria-label="Escanear rótulo">${icon("scan", "lg")}</button></label></div>
         <button type="button" class="scan-card" data-action="scan">
-          <div class="txt"><div><h2>Escaneie o rótulo</h2><p>Veja nota, menor preço e quando abrir, direto da foto.</p></div><span class="go">${icon("scan")}Abrir câmera</span></div>
+          <div class="txt"><div><h2>Aponte para o rótulo</h2><p>Em segundos você vê a nota, a loja mais barata e se já está na hora de abrir.</p></div><span class="go">${icon("scan")}Abrir câmera</span></div>
           <div class="viz" aria-hidden="true"><i></i><i></i><i></i><i></i>${bottle(D.byId["piedra-sola"])}</div>
         </button>
-        <div class="section-title"><h2>Preço caiu esta semana</h2><button type="button" data-tab-go="ofertas">Ver ofertas</button></div>
+        <div class="section-title"><h2>Baixaram de preço</h2><button type="button" data-tab-go="ofertas">Ver ofertas</button></div>
         <div class="rail">${deals.map(w => { const d = bestDeal(w); return `<button type="button" class="deal" data-go="wine" data-id="${w.id}">
           <div class="shot"><span class="av-badge av-badge--success off">${icon("down")}${pct(d)}%</span>${bottle(w)}</div>
-          <div class="n">${w.full}</div><div class="p"><b>${money(d.price)}</b><s>${money(d.old)}</s></div><div class="s">${D.stores[d.store].name}</div></button>`; }).join("")}</div>
+          <div class="n">${w.full}</div><div class="p"><b>${money(d.price)}</b><s>${money(d.old)}</s></div><div class="s"><em>${brl(d.old - d.price).replace(/,00$/, "")} a menos</em><br>${D.stores[d.store].name}</div></button>`; }).join("")}</div>
         <div class="section-title"><h2>Buscas recentes</h2></div>
         <div class="recent">${["Malbec", "Espumante brasileiro", "Douro", "Até R$ 100"].map(q => `<button type="button" class="av-chip" data-go="results" data-q="${q}">${q}</button>`).join("")}</div>
-        <div class="section-title"><h2>Mais avaliados</h2></div>
+        <div class="section-title"><h2>Mais bem avaliados</h2></div>
         <div class="list">${popular.map(w => wineRow(w)).join("")}</div>`,
     };
   };
@@ -197,21 +206,23 @@
     const deal = bestDeal(w);
     return {
       cls: "no-tabs has-cta",
-      html: `<div class="wine-hero">
+      html: `<div class="wine-hero" data-theme="dark">
           <div class="navbar">${backBtn(p.back)}<div class="acts"><button type="button" class="round" data-action="toast" data-msg="Alerta de preço é um recurso Premium." aria-label="Avisar quando o preço cair">${icon("bell")}</button><button type="button" class="round" data-action="toast" data-msg="Link do vinho copiado." aria-label="Compartilhar">${icon("share")}</button></div></div>
           ${bottle(w)}
         </div>
         <div class="wine-head"><div class="producer">${w.producer}</div><h1>${w.full}</h1><div class="origin">${origin(w)}</div></div>
-        <div class="rating-big"><b>${one(w.rating)}</b><div>${stars(w.rating)}<small>${int(w.reviews)} avaliações</small></div></div>
-        <div class="facts"><span class="fact"><i class="dot" style="background:${typeVar(w.type)}"></i>${D.TYPES[w.type]}</span><span class="fact">${w.grape}</span><span class="fact">750 ml</span></div>
-        <div class="section-title"><h2>Onde comprar</h2><span class="footnote">${plural(w.offers.length, "loja", "lojas")}</span></div>
+        <div class="meta-line"><span class="score"><b>${one(w.rating)}</b>${stars(w.rating)}</span><span>${int(w.reviews)} avaliações</span><span><i class="dot" style="background:${typeVar(w.type)}"></i>${D.TYPES[w.type]}</span><span>${w.grape}</span></div>
+        ${(() => { const top = Math.max(...w.offers.map(o => o.price)), save = deal ? deal.old - deal.price : top - w.best.price;
+          return `<div class="price-hero"><small>Menor preço hoje, no ${D.stores[w.best.store].name}</small><div class="big"><span class="cur">R$</span><span data-roll="${w.best.price}">${brl(w.best.price)}</span></div>
+          ${save > 0.5 ? `<p class="save">${icon("down")}R$ ${brl(save).replace(/,00$/, "")} a menos ${deal ? "que o preço anterior" : "que a loja mais cara"}</p>` : ""}</div>`; })()}
+        <div class="section-title"><h2>Onde comprar mais barato</h2><span class="footnote">${plural(w.offers.length, "loja", "lojas")}</span></div>
         <div class="price-table">${w.offers.map((o, i) => { const s = D.stores[o.store]; return `<button type="button" class="offer${i === 0 ? " is-best" : ""}" style="width:100%;border:0;text-align:left;cursor:pointer;background-color:${i === 0 ? "" : "transparent"}" data-action="toast" data-msg="Abriria a página da ${s.name} no Safari.">
             <span class="mono" style="background:${s.color}">${s.mono}</span>
             <span class="who"><b>${s.name}</b><span>${s.ship}, ${s.eta}</span></span>
             <span class="pr"><b>${money(o.price)}</b>${i === 0 ? `<span class="av-badge av-badge--best">Melhor preço</span>` : o.old ? `<s>${money(o.old)}</s>` : ""}</span></button>`; }).join("")}</div>
-        <p class="table-foot">Preços atualizados hoje às 9h. O frete aparece mas não muda a ordem.</p>
-        <div class="pad" style="margin-top:14px"><button type="button" class="av-btn av-btn--secondary av-btn--block" data-action="toast" data-msg="Alerta de preço é um recurso Premium.">${icon("bell")}Avisar quando o preço cair</button></div>
-        <div class="section-title"><h2>Janela de consumo</h2></div>
+        <p class="table-foot">Preços de hoje, às 9h. O frete aparece ao lado, mas a ordem é só pelo preço da garrafa.</p>
+        <button type="button" class="link-row pad-row" data-action="toast" data-msg="Alerta de preço é um recurso Premium.">${icon("bell")}Me avise quando baixar de preço${icon("chev-r")}</button>
+        <div class="section-title"><h2>Quando abrir</h2></div>
         <div class="window-card">${windowHTML(w)}</div>
         <div class="sticky-cta"><div class="p"><small>${deal ? `Caiu ${pct(deal)}%` : "Menor preço"}</small><b>${money(w.best.price)}</b></div><button type="button" class="av-btn av-btn--primary av-btn--lg" data-action="add" data-id="${w.id}">${icon("plus")}Adicionar à adega</button></div>`,
     };
@@ -268,18 +279,18 @@
   const CELLAR_FILTERS = [["todas", "Todas"], ["ponto", "No ponto"], ["logo", "Beber logo"], ["guardar", "Guardar"]];
 
   VIEWS.adega = () => ({
-    cls: "cellar", theme: "dark",
+    cls: "cellar", theme: "dark", // a adega é sempre escura, nos dois modos
     html: `<div class="head"><h1 class="large-title">Adega</h1><button type="button" class="round" data-action="cellar-mode" aria-label="Ver em lista">${icon("list")}</button></div>
       <div class="sum" data-sum></div>
       <div class="controls"><div class="av-chips" data-cellar-chips></div></div>
-      <div class="rack" data-rack><div class="placing" hidden data-placing></div><p class="hint" data-hint>Arraste para girar. Toque numa garrafa.</p></div>
-      <div class="detail is-empty" data-detail>Toque numa garrafa para ver quando abrir.</div>
+      <div class="rack" data-rack><div class="placing" hidden data-placing></div><p class="hint" data-hint>Arraste para girar a adega</p></div>
+      <div class="detail is-empty" data-detail>Toque numa garrafa para saber se ela já está pronta para abrir.</div>
       <div class="list cellar-list" data-cellar-list></div>`,
     mount(el) {
       cellarView = el;
       refreshCellar();
       const rack = $("[data-rack]", el);
-      cellarApi = C3.mount(rack, { items: cellar.filter(x => x.r >= 0), wine: (id) => D.byId[id], onSelect: showBottle, onPlace: placed });
+      cellarApi = C3.mount(rack, { items: cellar.filter(x => x.r >= 0), wine: (id) => D.byId[id], onSelect: showBottle, onPlace: placed, dark: true });
       if (!cellarApi) {
         rack.insertAdjacentHTML("beforeend", `<p class="fallback">Este navegador não mostra a adega em 3D. Use a lista.</p>`);
         el.classList.add("mode-list");
@@ -306,7 +317,7 @@
   function showBottle(item) {
     lastSel = item;
     const d = $("[data-detail]", cellarView);
-    $("[data-hint]", cellarView).style.opacity = item ? 0 : 1;
+    $("[data-hint]", cellarView).textContent = item ? "Arraste para girar a garrafa. Toque fora para guardar." : "Arraste para girar a adega";
     if (!item) { d.className = "detail is-empty"; d.innerHTML = "Toque numa garrafa para ver quando abrir."; return; }
     const w = D.byId[item.id], st = D.STATUS[D.status(w)];
     const same = cellar.filter(x => x.id === item.id).length;
@@ -386,7 +397,7 @@
     const w = D.byId[p.id];
     return {
       cls: "no-tabs has-cta", theme: "dark",
-      html: `<div class="wine-hero">
+      html: `<div class="wine-hero" data-theme="dark">
           <div class="navbar">${backBtn(p.back)}<div class="acts"><button type="button" class="round" data-action="toast" data-msg="Editar a garrafa ainda não está no protótipo." aria-label="Editar">${icon("edit")}</button></div></div>
           ${bottle(w)}
         </div>
@@ -457,6 +468,9 @@
     if (v.theme) el.dataset.theme = v.theme;
     el.innerHTML = (/cellar|welcome/.test(v.cls || "") ? "" : '<div class="statusfill"></div>') + v.html;
     el._v = v; el._p = params;
+    el.classList.add("enter");
+    setTimeout(() => el.classList.remove("enter"), 1200);
+    requestAnimationFrame(() => rollPrices(el));
     return el;
   }
   function ensureRoot(tab) {

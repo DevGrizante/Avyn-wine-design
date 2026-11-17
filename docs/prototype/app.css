@@ -315,7 +315,7 @@ button { font: inherit; color: inherit; }
 .cellar .sum .ok b { color: var(--color-status-success); }
 .cellar .sum .warn b { color: var(--color-status-warning); }
 .cellar .controls { display: grid; gap: 12px; padding: 14px 16px 0; }
-.cellar .rack { position: relative; flex: 1; min-height: 300px; }
+.cellar .rack { position: relative; flex: 1; min-height: 300px; background: radial-gradient(62% 52% at 50% 46%, color-mix(in srgb, var(--color-accent-default) 16%, transparent), transparent); }
 .cellar .rack canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; display: block; cursor: grab; }
 .cellar .rack canvas:active { cursor: grabbing; }
 .cellar .rack .hint { position: absolute; left: 0; right: 0; bottom: 10px; text-align: center; font-size: 13px; color: var(--color-label-secondary); pointer-events: none; transition: opacity 300ms; }
@@ -358,9 +358,10 @@ button { font: inherit; color: inherit; }
 #auth { pointer-events: none; z-index: 42; }
 #auth > * { pointer-events: auto; }
 
-/* Fundo da barra de status ao rolar (material do sistema) */
-.screen > .statusfill { position: sticky; top: 0; height: 54px; margin: -54px 0 0; z-index: 20; pointer-events: none; transition: background-color 200ms, box-shadow 200ms; }
-.screen.is-scrolled > .statusfill { background: color-mix(in srgb, var(--color-background-base) 82%, transparent); -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4); box-shadow: 0 .5px 0 var(--color-separator-default); }
+/* Topo ao rolar: o conteúdo some num degradê suave atrás do relógio, sem faixa nem desfoque.
+   O top negativo compensa o padding da tela (sticky conta a partir da área de conteúdo). */
+.screen > .statusfill { position: sticky; top: -54px; height: 66px; margin: -54px 0 -12px; z-index: 20; pointer-events: none; opacity: 0; transition: opacity var(--dur-quick) var(--motion-easing-out); background: linear-gradient(var(--color-background-base) 80%, transparent); }
+.screen.is-scrolled > .statusfill { opacity: 1; }
 
 /* Adicionar sem escanear */
 .sheet.is-tall { height: 88%; }
@@ -444,3 +445,69 @@ button { font: inherit; color: inherit; }
 .note::placeholder { color: var(--color-label-secondary); }
 .note:focus { box-shadow: inset 0 0 0 2px var(--color-tint-default); }
 .link-row { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: 14px; padding: 14px; border: 0; border-radius: 14px; background: var(--color-surface-default); color: var(--color-tint-default); font: 600 16px/21px var(--font-family-text); cursor: pointer; }
+
+/* =========================================================
+   Movimento: uma escala só, propriedades sempre nomeadas.
+   ========================================================= */
+:root { --dur-quick: 160ms; --dur-base: 260ms; --dur-slow: 420ms; --stagger: 45ms; }
+
+/* Resposta ao toque: tudo que é tocável encolhe um pouco */
+:is(.deal, .wrow, .offer, .mini, .store-card .top, .scan-card, .av-btn, .av-chip, .link-row, .tabbar .tabs button, .round) {
+  transition: transform var(--dur-quick) var(--motion-easing-out), background-color var(--dur-quick) var(--motion-easing-out);
+}
+:is(.deal, .wrow, .offer, .mini, .store-card .top, .scan-card, .link-row):active { transform: scale(.975); }
+:is(.av-btn, .av-chip, .round, .tabbar .tabs button):active { transform: scale(.94); }
+
+/* Entrada em sequência quando a tela abre */
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } }
+.screen.enter :is(.rail > *, .list > *, .price-table > *, .recent > *, .store-card, .meta-line, .price-hero, .scan-card) {
+  animation: rise var(--dur-slow) var(--motion-easing-out) both;
+}
+.screen.enter :is(.rail, .list, .price-table, .recent) > :nth-child(2) { animation-delay: calc(var(--stagger) * 1); }
+.screen.enter :is(.rail, .list, .price-table, .recent) > :nth-child(3) { animation-delay: calc(var(--stagger) * 2); }
+.screen.enter :is(.rail, .list, .price-table, .recent) > :nth-child(4) { animation-delay: calc(var(--stagger) * 3); }
+.screen.enter :is(.rail, .list, .price-table, .recent) > :nth-child(5) { animation-delay: calc(var(--stagger) * 4); }
+.screen.enter :is(.rail, .list, .price-table, .recent) > :nth-child(n+6) { animation-delay: calc(var(--stagger) * 5); }
+.screen.enter .scan-card { animation-delay: 60ms; }
+.screen.enter .price-hero { animation-delay: 120ms; }
+@media (prefers-reduced-motion: reduce) {
+  .screen.enter * { animation: none !important; }
+  :is(.deal, .wrow, .offer, .mini, .av-btn, .av-chip, .round, .link-row, .scan-card):active { transform: none; }
+}
+
+/* =========================================================
+   Direção de arte: "adega à luz baixa".
+   A garrafa fica sob um foco de luz e o resto em penumbra.
+   ========================================================= */
+.wine-hero { height: 470px; color: #F8F3EC; background:
+    radial-gradient(46% 38% at 50% 36%, rgba(255, 214, 160, .30), rgba(255, 214, 160, 0) 70%),
+    radial-gradient(120% 80% at 50% 0%, #2a1c15 0%, #16110F 62%); }
+.wine-hero::after { content: ""; position: absolute; left: 50%; bottom: 4px; width: 200px; height: 28px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,.7), rgba(0,0,0,0)); }
+.wine-hero .bottle-img { height: 360px; position: relative; z-index: 1; filter: drop-shadow(0 18px 24px rgba(0,0,0,.45)); }
+.wine-hero .navbar { z-index: 2; }
+.wine-hero .navbar .back { color: #F8F3EC; }
+.wine-hero .navbar .round { background: rgba(248, 243, 236, .12); color: #F8F3EC; }
+.wine-head { padding: 26px 20px 0; }
+.wine-head .producer { font: 600 12px/16px var(--font-family-text); letter-spacing: .12em; text-transform: uppercase; color: var(--color-accent-ink); }
+.wine-head h1 { margin: 8px 0 6px; font: 600 34px/38px var(--font-family-display); letter-spacing: -0.015em; text-wrap: balance; }
+.meta-line { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin: 14px 20px 0; font-size: 14px; color: var(--color-label-secondary); }
+.meta-line .score { display: inline-flex; align-items: center; gap: 6px; color: var(--color-label-primary); }
+.meta-line .score b { font: 600 17px/1 var(--font-family-text); }
+.meta-line .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+.price-hero { margin: 22px 20px 0; padding: 18px 0 0; border-top: .5px solid var(--color-separator-strong); }
+.price-hero small { font-size: 13px; color: var(--color-label-secondary); }
+.price-hero .big { margin-top: 6px; font: 600 46px/1 var(--font-family-text); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.price-hero .big .cur { font-size: 20px; vertical-align: 16px; margin-right: 4px; color: var(--color-label-secondary); }
+.price-hero .save { display: flex; align-items: center; gap: 6px; margin: 10px 0 0; font: 600 15px/20px var(--font-family-text); color: var(--color-status-success); }
+.price-hero .save .icon { width: 16px; height: 16px; }
+.pad-row { width: auto; margin: 14px 16px 0; justify-content: flex-start; gap: 10px; }
+.pad-row .icon { width: 20px; height: 20px; }
+.pad-row .icon:last-child { margin-left: auto; color: var(--color-label-tertiary); }
+
+/* Menos caixas: as garrafas das ofertas ficam sob luz, sem moldura */
+.deal .shot { background: radial-gradient(60% 55% at 50% 42%, color-mix(in srgb, var(--color-accent-default) 22%, transparent), transparent 75%); box-shadow: none; }
+.deal .p b { font-size: 19px; font-variant-numeric: tabular-nums; }
+.deal .s em { font-style: normal; font-weight: 600; color: var(--color-status-success); }
+.deal .s em::before { content: "R$ "; }
+.wrow .aside b, .offer .pr b, .sticky-cta .p b { font-variant-numeric: tabular-nums; }
+.sticky-cta .p b { font-size: 22px; }
